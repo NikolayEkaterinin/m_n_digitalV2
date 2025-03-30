@@ -64,12 +64,12 @@ class CustomUser(AbstractUser):
         verbose_name='ok',
         help_text='Введите ссылку на ваш профиль в Однокласниках'
     )
-    Whatsapp = social_media_field(
+    whatsapp = social_media_field(
         verbose_name='WhatSap',
         help_text='Укажите номер телефона в WhatSap',
         validators=[phone_regex]
     )
-    LinkedIn = social_media_field(
+    linkedin = social_media_field(
         verbose_name='LinkedIn',
         help_text='Введите ссылку на ваш профиль в LinkedIn'
     )
