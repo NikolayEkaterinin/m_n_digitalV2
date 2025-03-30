@@ -1,0 +1,140 @@
+[
+  {
+    "model": "users.CustomUser",
+    "pk": 1,
+    "fields": {
+      "username": "user1",
+      "email": "user1@example.com",
+      "first_name": "Иван",
+      "last_name": "Иванов",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "telegram": "@ivanov",
+      "telephone": "+79161234567",
+      "vk": "https://vk.com/ivanov",
+      "whatsapp": "+79161234567",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 2,
+    "fields": {
+      "username": "user2",
+      "email": "user2@example.com",
+      "first_name": "Мария",
+      "last_name": "Петрова",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "linkedin": "https://linkedin.com/in/maria",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 3,
+    "fields": {
+      "username": "user3",
+      "email": "user3@example.com",
+      "first_name": "Алексей",
+      "last_name": "Смирнов",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "telegram": "@alexey",
+      "vk": "https://vk.com/alexey",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 4,
+    "fields": {
+      "username": "user4",
+      "email": "user4@example.com",
+      "first_name": "Елена",
+      "last_name": "Кузнецова",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "whatsapp": "+79162345678",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 5,
+    "fields": {
+      "username": "user5",
+      "email": "user5@example.com",
+      "first_name": "Дмитрий",
+      "last_name": "Попов",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "telegram": "@dmitry",
+      "linkedin": "https://linkedin.com/in/dmitry",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 6,
+    "fields": {
+      "username": "user6",
+      "email": "user6@example.com",
+      "first_name": "Ольга",
+      "last_name": "Васильева",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "vk": "https://vk.com/olga",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 7,
+    "fields": {
+      "username": "user7",
+      "email": "user7@example.com",
+      "first_name": "Сергей",
+      "last_name": "Петров",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "telegram": "@sergey",
+      "telephone": "+79163456789",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 8,
+    "fields": {
+      "username": "user8",
+      "email": "user8@example.com",
+      "first_name": "Анна",
+      "last_name": "Соколова",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "whatsapp": "+79164567890",
+      "linkedin": "https://linkedin.com/in/anna",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 9,
+    "fields": {
+      "username": "user9",
+      "email": "user9@example.com",
+      "first_name": "Андрей",
+      "last_name": "Михайлов",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "vk": "https://vk.com/andrey",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 10,
+    "fields": {
+      "username": "user10",
+      "email": "user10@example.com",
+      "first_name": "Наталья",
+      "last_name": "Новикова",
+      "password": "pbkdf2_sha256$260000$HASH...",
+      "telegram": "@natalia",
+      "telephone": "+79165678901",
+      "is_active": true
+    }
+  }
+]

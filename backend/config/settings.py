@@ -153,3 +153,5 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,  # Генерация нового refresh-токена при обновлении
 }
+
+AUTH_USER_MODEL = 'users.CustomUser'
