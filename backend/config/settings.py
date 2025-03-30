@@ -144,7 +144,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # По умолчанию для всех endpoint'ов
+        'rest_framework.permissions.AllowAny',  # По умолчанию разрешить всем
     ],
 }
 
@@ -155,3 +155,9 @@ SIMPLE_JWT = {
 }
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+DJOSER = {
+    'PERMISSIONS': {
+        'user_create': ['rest_framework.permissions.AllowAny'],
+    }
+}
