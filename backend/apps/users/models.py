@@ -1,14 +1,14 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
-from config.valodators import telegram_regex, phone_regex, vk_regex
+from config.validators import telegram_regex, phone_regex, vk_regex
 
 # Константы
 MAX_LENGTH = 50
 
 
-def social_media_field(verbose_name=None, help_text=None,
-                       validators=None):
+def social_media_field(verbose_name=None, help_text=None, validators=None):
     return models.CharField(
         verbose_name=verbose_name,
         max_length=MAX_LENGTH,
@@ -16,65 +16,98 @@ def social_media_field(verbose_name=None, help_text=None,
         blank=True,
         null=False,
         help_text=help_text,
-        validators=validators
+        validators=validators if validators else []
     )
 
 
 class CustomUser(AbstractUser):
     """Модель пользователя"""
+    # Переопределяем стандартные поля для устранения конфликтов
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name=_('groups'),
+        blank=True,
+        help_text=_(
+            'The groups this user belongs to. A user will get all permissions '
+            'granted to each of their groups.'
+        ),
+        related_name="customuser_groups",
+        related_query_name="customuser",
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name=_('user permissions'),
+        blank=True,
+        help_text=_('Specific permissions for this user.'),
+        related_name="customuser_permissions",
+        related_query_name="customuser",
+    )
+
     username = models.CharField(
+        _('username'),
         max_length=MAX_LENGTH,
         null=False,
-        verbose_name='Имя пользователя',
         unique=True,
-        db_index=True
+        db_index=True,
+        help_text=_(
+            'Required. 50 characters or fewer. Letters, digits and @/./+/-/_ only.'),
     )
 
     first_name = models.CharField(
+        _('first name'),
         max_length=MAX_LENGTH,
-        verbose_name='Имя'
+        blank=True
     )
+
     last_name = models.CharField(
+        _('last name'),
         max_length=MAX_LENGTH,
-        verbose_name='Фамилия'
+        blank=True
     )
+
     email = models.EmailField(
-        verbose_name='Электронная почта',
+        _('email address'),
         unique=True
     )
 
     telegram = social_media_field(
-        verbose_name='telegram',
-        help_text='Ваш никнейм в телеграм',
+        verbose_name=_('Telegram'),
+        help_text=_('Ваш никнейм в телеграм (начинается с @)'),
         validators=[telegram_regex]
     )
 
     telephone = social_media_field(
-        verbose_name='телефон',
-        help_text='Введите ваш номер телефона',
+        verbose_name=_('Телефон'),
+        help_text=_('Введите ваш номер телефона'),
         validators=[phone_regex]
     )
 
     vk = social_media_field(
-        verbose_name='vk',
-        help_text='Введите ссылку на ваш профиль VK',
+        verbose_name=_('VK'),
+        help_text=_('Введите ссылку на ваш профиль VK'),
         validators=[vk_regex]
     )
+
     ok = social_media_field(
-        verbose_name='ok',
-        help_text='Введите ссылку на ваш профиль в Однокласниках'
+        verbose_name=_('Одноклассники'),
+        help_text=_('Введите ссылку на ваш профиль в Одноклассниках')
     )
+
     whatsapp = social_media_field(
-        verbose_name='WhatSap',
-        help_text='Укажите номер телефона в WhatSap',
+        verbose_name=_('WhatsApp'),
+        help_text=_('Укажите номер телефона в WhatsApp'),
         validators=[phone_regex]
     )
+
     linkedin = social_media_field(
-        verbose_name='LinkedIn',
-        help_text='Введите ссылку на ваш профиль в LinkedIn'
+        verbose_name=_('LinkedIn'),
+        help_text=_('Введите ссылку на ваш профиль в LinkedIn')
     )
 
     class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = 'Пользователи'
+        verbose_name = _("Пользователь")
+        verbose_name_plural = _('Пользователи')
         ordering = ('id',)
+
+    def __str__(self):
+        return self.username

@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'apps.posts',
     'apps.projects',
     'apps.users',
-    'apps.orders'
+    'apps.orders',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
