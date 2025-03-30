@@ -1,0 +1,4 @@
+# Файлы
+.env
+.gitignore
+db.sqlite3
