@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.orders',
     'rest_framework',
-    'rest_framework_simplejwt',
+    'rest_framework.authtoken',  # Добавьте это
+    'djoser',
     'corsheaders',
 
 ]
@@ -141,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',  # По умолчанию разрешить всем

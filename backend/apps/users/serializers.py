@@ -50,3 +50,26 @@ class ProfileSerializer(serializers.ModelSerializer):
             'password'
         ]
     read_only_fields = ['id']
+
+
+class ListUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'id',
+            'username',
+            'first_name',
+            'last_name',
+            'image',
+            'email',
+            'telegram',
+            'telephone',
+            'vk',
+            'ok',
+            'whatsapp',
+            'linkedin',
+            'password'
+        ]
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
