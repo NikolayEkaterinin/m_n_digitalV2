@@ -46,7 +46,7 @@ class CustomUser(AbstractUser):
 
     image = models.ImageField(
         verbose_name="Фото профиля",
-        upload_to="recipes_img/",
+        upload_to="profile_img/",
         validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])],
 
         null=True,

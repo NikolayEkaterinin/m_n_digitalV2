@@ -7,8 +7,8 @@ from rest_framework.viewsets import GenericViewSet
 
 from .models import CustomUser
 from .serializers import (RegisterSerializer,
-                          ProfileSerializer,
-                          ListUserSerializer)
+                          ProfileSerializer
+                          )
 
 
 class UserRegistrationViewSet(GenericViewSet):
@@ -51,7 +51,7 @@ class UserProfileViewSet(GenericViewSet):
 class ListProfileViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     permission_classes = [IsAuthenticated, IsAdminUser]
-    serializer_class = ListUserSerializer
+    serializer_class = ProfileSerializer
 
     def get_queryset(self):
         if not self.request.user.is_superuser:

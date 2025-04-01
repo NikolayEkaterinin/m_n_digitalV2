@@ -1,0 +1,156 @@
+[
+  {
+    "model": "projects.serviceoption",
+    "pk": 1,
+    "fields": {
+      "project": 1,
+      "title": "Дизайн интерфейса",
+      "description": "Разработка UI/UX дизайна для корпоративного сайта",
+      "price": "50000.00",
+      "deadline_days": 14
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 2,
+    "fields": {
+      "project": 1,
+      "title": "Интеграция с CRM",
+      "description": "Подключение к CRM Битрикс24",
+      "price": "30000.00",
+      "deadline_days": 7
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 3,
+    "fields": {
+      "project": 2,
+      "title": "iOS-версия приложения",
+      "description": "Разработка нативного приложения для App Store",
+      "price": "120000.00",
+      "deadline_days": 30
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 4,
+    "fields": {
+      "project": 2,
+      "title": "Android-версия приложения",
+      "description": "Разработка нативного приложения для Google Play",
+      "price": "100000.00",
+      "deadline_days": 25
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 5,
+    "fields": {
+      "project": 3,
+      "title": "Анимации на лендинге",
+      "description": "Создание интерактивных анимаций для главной страницы",
+      "price": "15000.00",
+      "deadline_days": 5
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 6,
+    "fields": {
+      "project": 4,
+      "title": "Каталог товаров",
+      "description": "Разработка системы каталога с фильтрами",
+      "price": "80000.00",
+      "deadline_days": 20
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 7,
+    "fields": {
+      "project": 4,
+      "title": "Система оплаты",
+      "description": "Интеграция с платежными системами",
+      "price": "40000.00",
+      "deadline_days": 10
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 8,
+    "fields": {
+      "project": 5,
+      "title": "Видеохостинг",
+      "description": "Настройка платформы для загрузки видеоуроков",
+      "price": "90000.00",
+      "deadline_days": 25
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 9,
+    "fields": {
+      "project": 6,
+      "title": "Аудит сайта",
+      "description": "Полный технический и SEO-аудит",
+      "price": "10000.00",
+      "deadline_days": 3
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 10,
+    "fields": {
+      "project": 6,
+      "title": "Написание метатегов",
+      "description": "Оптимизация title и description для 50 страниц",
+      "price": "5000.00",
+      "deadline_days": 2
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 11,
+    "fields": {
+      "project": 7,
+      "title": "Еженедельное резервное копирование",
+      "description": "Настройка автоматического бэкапа",
+      "price": "3000.00",
+      "deadline_days": 1
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 12,
+    "fields": {
+      "project": 8,
+      "title": "3 варианта логотипа",
+      "description": "Предоставление 3 концепций на выбор",
+      "price": "8000.00",
+      "deadline_days": 4
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 13,
+    "fields": {
+      "project": 9,
+      "title": "Настройка Яндекс.Директ",
+      "description": "Создание 5 рекламных кампаний",
+      "price": "12000.00",
+      "deadline_days": 5
+    }
+  },
+  {
+    "model": "projects.serviceoption",
+    "pk": 14,
+    "fields": {
+      "project": 10,
+      "title": "SEO-тексты",
+      "description": "Написание 10 оптимизированных текстов",
+      "price": "7000.00",
+      "deadline_days": 3
+    }
+  }
+]

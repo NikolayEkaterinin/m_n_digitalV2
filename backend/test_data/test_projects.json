@@ -1,0 +1,132 @@
+[
+  {
+    "model": "projects.project",
+    "pk": 1,
+    "fields": {
+      "type": "project",
+      "title": "Разработка корпоративного сайта",
+      "description": "Создание современного адаптивного сайта для компании с CRM-интеграцией.",
+      "image": "project_img/website1.jpg",
+      "url": "https://example.com/project1",
+      "price": "150000.00",
+      "deadline_days": 30
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 2,
+    "fields": {
+      "type": "project",
+      "title": "Мобильное приложение для доставки еды",
+      "description": "Разработка кроссплатформенного приложения с системой оплаты и трекингом заказов.",
+      "image": "project_img/app1.jpg",
+      "url": "https://example.com/project2",
+      "price": "250000.00",
+      "deadline_days": 60
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 3,
+    "fields": {
+      "type": "project",
+      "title": "Лендинг для стартапа",
+      "description": "Яркий одностраничник с анимациями и формой захвата лидов.",
+      "image": "project_img/landing1.jpg",
+      "url": "https://example.com/project3",
+      "price": "50000.00",
+      "deadline_days": 14
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 4,
+    "fields": {
+      "type": "project",
+      "title": "Интернет-магазин мебели",
+      "description": "Полноценный магазин с каталогом, корзиной и интеграцией с 1С.",
+      "image": "project_img/store1.jpg",
+      "url": "https://example.com/project4",
+      "price": "300000.00",
+      "deadline_days": 45
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 5,
+    "fields": {
+      "type": "project",
+      "title": "Портал для онлайн-обучения",
+      "description": "Платформа с видеоуроками, тестами и сертификатами.",
+      "image": "project_img/edu1.jpg",
+      "url": "https://example.com/project5",
+      "price": "400000.00",
+      "deadline_days": 90
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 6,
+    "fields": {
+      "type": "service",
+      "title": "SEO-продвижение сайта",
+      "description": "Комплексное продвижение в поисковых системах с ежемесячными отчетами.",
+      "image": "project_img/seo1.jpg",
+      "url": "https://example.com/service1",
+      "price": "30000.00",
+      "deadline_days": 30
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 7,
+    "fields": {
+      "type": "service",
+      "title": "Техническая поддержка",
+      "description": "Ежемесячное обслуживание сайта: обновления, резервные копии, мониторинг.",
+      "image": "project_img/support1.jpg",
+      "url": "https://example.com/service2",
+      "price": "15000.00",
+      "deadline_days": 7
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 8,
+    "fields": {
+      "type": "service",
+      "title": "Редизайн логотипа",
+      "description": "Создание современного фирменного стиля для бренда.",
+      "image": "project_img/logo1.jpg",
+      "url": "https://example.com/service3",
+      "price": "20000.00",
+      "deadline_days": 10
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 9,
+    "fields": {
+      "type": "service",
+      "title": "Настройка контекстной рекламы",
+      "description": "Запуск и ведение кампаний в Google Ads и Яндекс.Директ.",
+      "image": "project_img/ads1.jpg",
+      "url": "https://example.com/service4",
+      "price": "25000.00",
+      "deadline_days": 14
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 10,
+    "fields": {
+      "type": "service",
+      "title": "Копирайтинг для сайта",
+      "description": "Написание продающих текстов для главной страницы и услуг.",
+      "image": "project_img/copy1.jpg",
+      "url": "https://example.com/service5",
+      "price": "18000.00",
+      "deadline_days": 5
+    }
+  }
+]
