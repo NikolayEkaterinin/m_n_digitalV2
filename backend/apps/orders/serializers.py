@@ -3,6 +3,7 @@ from rest_framework import serializers
 from apps.projects.models import ServiceOption
 from apps.projects.serializers import (ServiceOptionSerializer,
                                        ProjectSerializer)
+
 from apps.users.serializers import ProfileSerializer
 from .models import Order
 
@@ -13,14 +14,23 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         queryset=ServiceOption.objects.all(),
         required=False
     )
+    user = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+        default=serializers.CurrentUserDefault()
+    )
 
     class Meta:
         model = Order
-        fields = ['service',
-                  'selected_options',
-                  'title',
-                  'description',
-                  'status']
+        fields = [
+            'user',
+            'service',
+            'base_price',
+            'selected_options',
+            'options_price',
+            'total_price',
+            'title',
+            'description',
+            'status']
         extra_kwargs = {'status': {'read_only': True}}
 
     def create(self, validated_data):
