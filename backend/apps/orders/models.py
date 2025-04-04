@@ -45,22 +45,26 @@ class Order(models.Model):
         max_digits=10,
         decimal_places=2,
         verbose_name='Базовая стоимость',
-        validators=[MinValueValidator(0)]
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True
     )
-
     options_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         verbose_name='Стоимость опций',
         default=0,
-        validators=[MinValueValidator(0)]
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True
     )
-
     total_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         verbose_name='Итоговая стоимость',
-        validators=[MinValueValidator(0)]
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True
     )
 
     # Статусы и даты
@@ -94,6 +98,26 @@ class Order(models.Model):
         auto_now=True,
         verbose_name='Дата обновления'
     )
+
+    def calculate_prices(self):
+        """
+        Рассчитывает стоимость заказа на основе базовой цены услуги и выбранных опций.
+        Обновляет поля base_price, options_price и total_price.
+        """
+        # Рассчитываем базовую цену (из связанной услуги)
+        self.base_price = self.service.price if self.service else 0
+
+        # Рассчитываем стоимость всех выбранных опций
+        self.options_price = sum(
+            option.price for option in self.selected_options.all()
+        ) if self.selected_options.exists() else 0
+
+        # Итоговая цена - сумма базовой цены и стоимости опций
+        self.total_price = self.base_price + self.options_price
+
+        # Сохраняем изменения (если метод вызывается отдельно от save())
+        self.save(update_fields=['base_price', 'options_price', 'total_price'])
+
 
     def clean(self):
         """Валидация на уровне модели"""

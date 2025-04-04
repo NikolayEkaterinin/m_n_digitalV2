@@ -1,0 +1,282 @@
+[
+  {
+    "model": "orders.order",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "service": 6,
+      "selected_options": [1],
+      "title": "Разработка корпоративного сайта",
+      "description": "Создание многостраничного сайта для строительной компании",
+      "status": "in_progress",
+      "created_at": "2023-01-10T09:30:00Z",
+      "updated_at": "2023-01-15T11:20:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "service": 7,
+      "selected_options": [1],
+      "title": "Мобильное приложение для доставки еды",
+      "description": "Разработка iOS/Android приложения с системой заказов",
+      "status": "paid",
+      "created_at": "2023-01-15T14:15:00Z",
+      "updated_at": "2023-01-20T10:45:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "service": 8,
+      "selected_options": [],
+      "title": "SEO продвижение интернет-магазина",
+      "description": "Комплексное продвижение по ключевым запросам",
+      "status": "completed",
+      "created_at": "2023-01-20T11:00:00Z",
+      "updated_at": "2023-02-28T16:30:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "service": 9,
+      "selected_options": [1],
+      "title": "CRM система для автосалона",
+      "description": "Интеграция с 1С и телефонией",
+      "status": "in_progress",
+      "created_at": "2023-02-01T10:45:00Z",
+      "updated_at": "2023-02-10T14:15:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "service": 10,
+      "selected_options": [1],
+      "title": "Редизайн сайта ресторана",
+      "description": "Адаптивный дизайн и новая структура",
+      "status": "draft",
+      "created_at": "2023-02-05T16:20:00Z",
+      "updated_at": "2023-02-05T16:20:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "service": 6,
+      "selected_options": [1],
+      "title": "Интернет-магазин электроники",
+      "description": "Интеграция с платежными системами и CRM",
+      "status": "paid",
+      "created_at": "2023-02-10T13:10:00Z",
+      "updated_at": "2023-02-15T09:30:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "service": 6,
+      "selected_options": [1],
+      "title": "Фитнес-приложение",
+      "description": "Трекинг тренировок и питания",
+      "status": "in_progress",
+      "created_at": "2023-02-15T15:45:00Z",
+      "updated_at": "2023-02-20T12:15:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 8,
+    "fields": {
+      "user": 3,
+      "service": 6,
+      "selected_options": [],
+      "title": "Контекстная реклама",
+      "description": "Настройка Яндекс.Директ и Google Ads",
+      "status": "completed",
+      "created_at": "2023-03-01T10:30:00Z",
+      "updated_at": "2023-03-25T14:50:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 9,
+    "fields": {
+      "user": 4,
+      "service": 6,
+      "selected_options": [1],
+      "title": "ERP система",
+      "description": "Автоматизация бизнес-процессов",
+      "status": "cancelled",
+      "created_at": "2023-03-05T11:20:00Z",
+      "updated_at": "2023-03-10T15:40:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 10,
+    "fields": {
+      "user": 5,
+      "service": 7,
+      "selected_options": [1],
+      "title": "Корпоративный портал",
+      "description": "Внутренняя система документооборота",
+      "status": "in_progress",
+      "created_at": "2023-03-10T14:00:00Z",
+      "updated_at": "2023-03-15T10:25:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 11,
+    "fields": {
+      "user": 6,
+      "service": 6,
+      "selected_options": [1],
+      "title": "Сайт для медицинского центра",
+      "description": "Личный кабинет пациентов и онлайн-запись",
+      "status": "paid",
+      "created_at": "2023-03-15T09:15:00Z",
+      "updated_at": "2023-03-20T11:45:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 12,
+    "fields": {
+      "user": 7,
+      "service": 7,
+      "selected_options": [1],
+      "title": "Приложение для бронирования отелей",
+      "description": "Интеграция с системой бронирования",
+      "status": "in_progress",
+      "created_at": "2023-03-20T13:30:00Z",
+      "updated_at": "2023-03-25T14:15:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 13,
+    "fields": {
+      "user": 8,
+      "service": 7,
+      "selected_options": [],
+      "title": "SMM продвижение",
+      "description": "Ведение Instagram и Facebook",
+      "status": "completed",
+      "created_at": "2023-04-01T11:45:00Z",
+      "updated_at": "2023-04-20T16:20:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 14,
+    "fields": {
+      "user": 9,
+      "service": 7,
+      "selected_options": [1],
+      "title": "Система складского учета",
+      "description": "Интеграция с терминалами сбора данных",
+      "status": "cancelled",
+      "created_at": "2023-04-05T15:10:00Z",
+      "updated_at": "2023-04-10T12:30:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 15,
+    "fields": {
+      "user": 10,
+      "service": 10,
+      "selected_options": [2],
+      "title": "Лендинг для курсов",
+      "description": "Сбор заявок и интеграция с CRM",
+      "status": "in_progress",
+      "created_at": "2023-04-10T10:25:00Z",
+      "updated_at": "2023-04-15T09:50:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 16,
+    "fields": {
+      "user": 1,
+      "service": 10,
+      "selected_options": [1],
+      "title": "Интернет-магазин одежды",
+      "description": "Каталог с фильтрами и системой рекомендаций",
+      "status": "paid",
+      "created_at": "2023-04-15T14:35:00Z",
+      "updated_at": "2023-04-20T11:15:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 17,
+    "fields": {
+      "user": 2,
+      "service": 6,
+      "selected_options": [1],
+      "title": "Приложение для доставки товаров",
+      "description": "Трекинг заказов и геолокация",
+      "status": "in_progress",
+      "created_at": "2023-05-01T09:50:00Z",
+      "updated_at": "2023-05-05T13:25:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 18,
+    "fields": {
+      "user": 3,
+      "service": 8,
+      "selected_options": [],
+      "title": "Таргетированная реклама",
+      "description": "Настройка рекламы в социальных сетях",
+      "status": "completed",
+      "created_at": "2023-05-05T12:15:00Z",
+      "updated_at": "2023-05-25T15:30:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 19,
+    "fields": {
+      "user": 4,
+      "service": 9,
+      "selected_options": [1],
+      "title": "Автоматизация ресторана",
+      "description": "Система управления заведениями",
+      "status": "cancelled",
+      "created_at": "2023-05-10T14:40:00Z",
+      "updated_at": "2023-05-15T10:50:00Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 20,
+    "fields": {
+      "user": 5,
+      "service": 8,
+      "selected_options": [1],
+      "title": "Сайт визитка для юриста",
+      "description": "Адаптивный дизайн и форма обратной связи",
+      "status": "in_progress",
+      "created_at": "2023-05-15T11:05:00Z",
+      "updated_at": "2023-05-20T14:20:00Z"
+    }
+  }
+]
