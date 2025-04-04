@@ -1,5 +1,47 @@
-from django.core.validators import FileExtensionValidator, URLValidator
+from django.contrib.contenttypes.fields import (GenericRelation,
+                                                GenericForeignKey)
+from django.contrib.contenttypes.models import ContentType
+from django.core.validators import URLValidator
 from django.db import models
+
+
+class MediaFile(models.Model):
+    MEDIA_TYPES = (
+        ('photo', 'Фото'),
+        ('video', 'Видео'),
+        ('gif', 'GIF'),
+    )
+
+    # Поля для GenericForeignKey
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey(
+        'content_type', 'object_id')
+
+    file = models.FileField(upload_to='media/%Y/%m/%d/')
+    media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Медиафайл'
+        verbose_name_plural = 'Медиафайлы'
+
+    def __str__(self):
+        return f"{self.get_media_type_display()} (ID: {self.id})"
+
+
+class Category(models.Model):
+    name = models.CharField(
+        max_length=150,
+        verbose_name='Название категории',
+    )
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = 'Категория',
+        verbose_name_plural = 'Категории'
 
 
 class Project(models.Model):
@@ -23,12 +65,10 @@ class Project(models.Model):
     description = models.TextField(
         verbose_name='Описание'
     )
-    image = models.ImageField(
-        upload_to="project_img/",
-        validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])],
-        verbose_name='Изображение проекта',
-        blank=True,
-        null=True
+    media_files = GenericRelation(
+        MediaFile,
+        related_query_name='project',
+        verbose_name='Медиафайлы'
     )
     url = models.URLField(
         verbose_name='Ссылка на проект',
@@ -47,6 +87,13 @@ class Project(models.Model):
         default=0,
         blank=True,
         null=True
+    )
+
+    category = models.ForeignKey(
+        Category,
+        related_name='project',
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     def __str__(self):
