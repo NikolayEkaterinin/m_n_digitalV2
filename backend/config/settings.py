@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.projects',
     'apps.users',
     'apps.orders',
+    'apps.pages',
     'rest_framework',
     'rest_framework.authtoken',  # Добавьте это
     'djoser',
