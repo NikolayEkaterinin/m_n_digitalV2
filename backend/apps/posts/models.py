@@ -1,13 +1,9 @@
-from django.contrib.contenttypes.fields import (GenericForeignKey,
-                                                GenericRelation)
+from django.contrib.contenttypes.fields import (GenericRelation)
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from apps.projects.models import Category, MediaFile
 from apps.users.models import CustomUser
-
-
-
 
 
 class Post(models.Model):
@@ -36,7 +32,6 @@ class Post(models.Model):
         verbose_name='Категория поста'
     )
 
-    # Правильное объявление GenericRelation
     media_files = GenericRelation(
         MediaFile,
         related_query_name='post',
