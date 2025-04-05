@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="hero_section">
+        <div class="hero_text">
+            <h3>Креативный Хаб</h3>
+            <h4>Дизайн и Разработка</h4>
+            <p>Здесь идеи оживают с помощью технологий!</p>
+            <div class="service_category">
+              {% for category in category %}
+                <a href="#">{{ category.name }}</a>
+              {% endfor %}
+
+                <a id="all_services" href="">Все категории <span class="snap"><i
+                    class="fas fa-arrow-right"></i></span></a>
+            </div>
+        </div>
+        <div class="hero_photo">
+            <img src="{% static 'img/hero.png' %}">
+        </div>
+    </div>
+    
+    <div class="project">
+        <h2>Наши проекты</h2>
+        <div class="project_list">
+            {% for project in projects %}
+            <div class="project_cart">
+                <div class="header_project">
+                    <img src="{{ project.image.url }}" alt="photo">
+                    <h3>{{ project.title }}</h3>
+                </div>
+                <p>{{ project.description }}</p>
+                <a href="{{ project.get_absolute_url }}">Посмотреть</a>
+            </div>
+            {% endfor %}
+            <div id="all_projects_cart" class="project_cart">
+                <a id="all_projects" href="#">Смотреть все проекты <span class="snap"><i
+                    class="fas fa-arrow-right"></i></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="process">
+        <h2>Как мы решаем задачи в M&N Digital</h2>
+        <p>Идеально подходит для бизнеса и частных лиц</p>
+        <div class="process_line">
+            <div class="choosing_service process_blok">
+                <img src="{% static 'img/choose_service.svg' %}" alt="">
+                <h3>Выбор услуги и согласование</h3>
+                <p>Выберите услугу которая Вам необходима. Мы согласовываем с Вами всё ТЗ, сроки и оплату.</p>
+            </div>
+            <div class="getting_result process_blok">
+                <img src="{% static 'img/result.svg' %}" alt="">
+                <h3>Согласование результата</h3>
+                <p>После выполнения, мы предоставляем Вам демо результатов. Если Вас все устраивает, переходим к оплате.</p>
+            </div>
+            <div class="payment_service process_blok">
+                <img src="{% static 'img/pay.svg' %}" alt="">
+                <h3>Оплата проекта</h3>
+                <p>После согласования результата, Вы оплачиваете заранее обговоренную стоимость и мы переводим Вам все исходники и результаты работы.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

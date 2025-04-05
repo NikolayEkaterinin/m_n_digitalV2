@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>M&N Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <meta name="theme-color" content="#fafafa">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <img src="img/logo.png" alt="Фото пока нет">
+          <h3>M&N Digital</h3>
+        </div>
+        <div class="menu">
+          <a class="menu_link">
+            Главная</a>
+          <a class="menu_link">
+            Проекты</a>
+          <a class="menu_link">
+            Услуги</a>
+          <a class="menu_link">
+            Создать заказ</a>
+        </div>
+        <div class="account_preview">
+          <h4>Дизайнер Дизайнеров</h4>
+
+          <img src="img/кругляшк.png">
+          <a href=""><img src="img/akar-icons_chevron-down.svg"></a>
+        </div>
+      </div>
+
+      <div class="profile_info">
+        <div class="profile_data">
+          <h3>Дизайнер</h3>
+          <h2><span>Дизайнер</span> Дизайнеров</h2>
+          <p>Здесь будет несколько слов о себе</p>
+          <div class="contacts_info">
+              <div class="title_contact" onclick="toggleContacts()">
+                  <p>Контактная информация</p>
+                  <img id="chevron" src="img/akar-icons_chevron-down.svg">
+              </div>
+                <div class="contact_details" id="contactDetails">
+                    <div class="contact_line"><img src="img/vk.svg" alt=""><p>Ваш ВК</p></div>
+                    <div class="contact_line"><img src="img/telegram.svg" alt=""><p>Ваш телеграм</p></div>
+                    <div class="contact_line"><img src="img/email.svg" alt=""><p>Ваш email</p></div>
+                    <div class="contact_line"><img src="img/telephone.svg" alt=""><p>Ваш телефон</p></div>
+                </div>
+          </div>
+        </div>
+        <div class="online_status">
+          <img src="img/Ellipse%2069.svg">
+          <p>В сети</p>
+        </div>
+        <div class="setting">
+          <img src="img/SettingsMajor%201.svg">
+        </div>
+        <div class="profile_photo">
+          <img src="img/кругляшк.png">
+        </div>
+      </div>
+      <div class="order">
+        <h2>Мои заказы</h2>
+        <div class="order_list">
+          <div id="create_order" class="order_cart">
+            <img  src="img/CirclePlusMajor%201.svg">
+
+            <h4>Создать заказ</h4>
+
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+          <div class="order_cart">
+            <img src="img/order_cart.jpeg">
+            <h4>Название заказа</h4>
+            <h5>Цена заказа</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="text_footer">
+          <h3>M&N Digital</h3>
+        </div>
+        <div class="contacts">
+          <a href=""><img src="img/vk.svg" alt=""></a>
+          <a href=""><img src="img/telegram.svg" alt=""></a>
+          <a href=""><img src="img/icons8-github.svg" alt=""></a>
+          <a href=""><img src="img/email.png" alt=""></a>
+          <a href=""><img src="img/behance.svg" alt=""></a>
+        </div>
+      </div>
+      <script src="js/app.js"></script>
+      <script>
+          function toggleContacts() {
+              const contactDetails = document.getElementById('contactDetails');
+              const chevron = document.getElementById('chevron');
+
+              if (contactDetails.classList.contains('show')) {
+                  contactDetails.classList.remove('show');
+                  chevron.style.transform = 'rotate(0deg)';
+              } else {
+                  contactDetails.classList.add('show');
+                  chevron.style.transform = 'rotate(180deg)';
+              }
+          }
+      </script>
+    </div>
+  </body>
+</html>
