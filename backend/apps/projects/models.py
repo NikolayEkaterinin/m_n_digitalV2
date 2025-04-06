@@ -1,8 +1,11 @@
+import os
+
 from django.contrib.contenttypes.fields import (GenericRelation,
                                                 GenericForeignKey)
 from django.contrib.contenttypes.models import ContentType
 from django.core.validators import URLValidator
 from django.db import models
+from django.utils.text import slugify
 
 
 class MediaFile(models.Model):
@@ -15,12 +18,26 @@ class MediaFile(models.Model):
     # Поля для GenericForeignKey
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey(
-        'content_type', 'object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
 
-    file = models.FileField(upload_to='media/%Y/%m/%d/')
+    def get_upload_path(self, filename):
+        # Базовый путь - всегда внутри media
+        base_path = 'media'
+
+        # Если есть связанный объект и у него есть название
+        if self.content_object and hasattr(self.content_object, 'title'):
+            project_name = getattr(self.content_object, 'title', 'unknown')
+            # Создаем безопасное имя папки
+            safe_name = slugify(project_name) or f"project_{self.object_title}"
+            # Полный путь: media/название_проекта/файл
+            return os.path.join(base_path, safe_name, filename)
+
+        # Если связанного объекта нет - сохраняем в media/other/файл
+        return os.path.join(base_path, 'other', filename)
+
+    file = models.FileField(upload_to=get_upload_path)
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(editable=True)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:

@@ -27,7 +27,13 @@
             {% for project in projects %}
             <div class="project_cart">
                 <div class="header_project">
-                    <img src="{{ project.image.url }}" alt="photo">
+                  {% with project.media_files.first as media %}
+                    {% if media %}
+                      <img src="{{ media.file.url }}" alt="{{ project.title }}">
+                    {% else %}
+                      <img src="/static/images/default_project.jpg" alt="No image">
+                    {% endif %}
+                  {% endwith %}
                     <h3>{{ project.title }}</h3>
                 </div>
                 <p>{{ project.description }}</p>
