@@ -13,8 +13,51 @@
             <a class="menu_link" href="#">Создать заказ</a>
         </div>
         <div class="registration">
+          {% if not user.is_authenticated %}
             <a class="registration_link login" href="#">Войти</a>
             <a class="registration_link signup" href="#">Регистрация</a>
+          {% else %}
+            <div class="account_preview">
+              <h4>{{ user.last_name }} {{ user.first_name }}</h4>
+              <img src="{{ user.image }}">
+
+              <div class="dropdown" id="accountDropdown">
+                <a href="#" class="dropdown-toggle" id="dropdownMenuButton">
+                  <img src="{% static 'img/akar-icons_chevron-down.svg' %}">
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Профиль</a></li>
+                  <li><a class="dropdown-item" href="#">Настройки</a></li>
+                  <li><a class="dropdown-item" href="#">Выйти</a></li>
+                </ul>
+              </div>
+            </div>
+          {% endif %}
         </div>
     </div>
 </header>
+
+<script>
+  // Обработчик клика для выпадающего меню
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const dropdown = document.querySelector('.dropdown');
+
+    if (dropdownToggle) {
+      dropdownToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+        dropdownMenu.classList.toggle('show');
+      });
+    }
+
+    // Закрытие меню при клике вне его области
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+        dropdownMenu.classList.remove('show');
+      }
+    });
+  });
+</script>

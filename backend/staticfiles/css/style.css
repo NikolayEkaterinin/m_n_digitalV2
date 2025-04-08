@@ -208,6 +208,7 @@ body {
   padding: 5px 20px;
   transition: 0.3s;
   text-decoration: none;
+  text-decoration-color: black ;
 }
 
 .menu_link:hover {
@@ -593,18 +594,19 @@ body {
 .account_preview h4 {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
-  font-size: 16px;
+  font-size: 16px!important;
   margin-right: 0.3rem;
+  color: black;
 }
 
 .account_preview img {
-  width: 80px;
+  width: 80px;!important;
   height: auto;
   border-radius: 50%;
 }
 
 .account_preview a img {
-  width: 24px;
+  width: 24px;!important;
   height: auto;
 }
 
@@ -858,7 +860,7 @@ body {
   flex-direction: row;
   border:  1px solid #F2F0FE;
   border-radius: 10px;
-  
+
 }
 
 .title_object  h2 {
@@ -915,7 +917,7 @@ body {
   border-radius: 10px;
 }
 
-.object_options h2 { 
+.object_options h2 {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
   font-size: 20px;
@@ -952,7 +954,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: var(--font-montserrat);
-  
+
 }
 .modification h4 {
   font-weight: var(--fw-500);
@@ -1032,7 +1034,7 @@ body {
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  
+
 }
 
 .review_category {
@@ -1131,7 +1133,7 @@ body {
 }
 
 
-.input_auth_data { 
+.input_auth_data {
   display: flex;
   flex-direction: column;
 }
@@ -1163,7 +1165,7 @@ body {
   font-size: 16px;
 }
 
-.forgot_pass a { 
+.forgot_pass a {
   margin: 0; /* Убираем все отступы (или оставляем только нужные, например, margin-right) */
   text-decoration: none;
   color: #FBA457;
@@ -1175,7 +1177,7 @@ body {
   display: flex;
   align-items: center;
   margin: 1rem 0 3rem  0;
-  
+
 }
 
 .enter_auth a {
@@ -1213,4 +1215,103 @@ body {
 .registration a {
   text-decoration: none;
   color: #FBA457;
+}
+
+/* Стили для выпадающего меню */
+
+/* Стили для выпадающего меню аккаунта */
+.account_preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+
+
+/* Стили для выпадающего меню */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-toggle img {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 200px;
+  background-color: #b0aeb7;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  opacity: 0.8;
+  transform: translateY(10px);
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 10px 0;
+  list-style: none;
+}
+
+.dropdown-menu.show {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: white !important;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #04C35C;
+  color: white !important;
+}
+
+/* Анимация для стрелки при открытии меню */
+.dropdown.open .dropdown-toggle img {
+  transform: rotate(180deg);
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    transform: translateY(100%);
+  }
+
+  .dropdown-menu.show {
+    transform: translateY(0);
+  }
+
+  .dropdown-item {
+    padding: 15px 20px;
+    font-size: 18px;
+  }
 }
