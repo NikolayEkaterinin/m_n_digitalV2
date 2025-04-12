@@ -1089,7 +1089,7 @@ body {
   display: flex;
   width: 70vw;
   max-width: 1280px;
-  height: 50vh;
+  height: 80vh;
   justify-content: center; /* Центрирование содержимого по горизонтали */
   align-items: center; /* Центрирование содержимого по вертикали */
 }
@@ -1129,7 +1129,7 @@ body {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
   font-size: 24px;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.75rem 0;
 }
 
 
@@ -1140,12 +1140,13 @@ body {
 
 
 .input_auth_data input {
-  width: 95%; /* Относительная ширина */
-  max-width: 400px; /* Максимальная ширина (замените на нужное значение) */
-  height: 30px;
+  width: 95%!important; /* Относительная ширина */
+  max-width: 400px!important; /* Максимальная ширина (замените на нужное значение) */
+  height: 30px!important;
   border-radius: 15px;
   border: #f0f0f0 solid 0.5px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3)!important;
+  padding-left: 10px;
 }
 .input_auth_data label {
   font-family: var(--font-montserrat);
@@ -1180,7 +1181,7 @@ body {
 
 }
 
-.enter_auth a {
+.enter_auth button {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-500);
   font-size: 18px;
@@ -1193,7 +1194,8 @@ body {
   text-decoration: none;
   color: #FFFFFF;
   border-radius: 30px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  border: none;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3)!important;
 }
 
 .registration {
@@ -1273,7 +1275,16 @@ body {
 
 .dropdown-item {
   display: block;
-  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px 20px; /* Равные отступы */
+  margin: 0;
   color: white !important;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
@@ -1281,17 +1292,20 @@ body {
   letter-spacing: 1px;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.dropdown-item:hover {
-  background-color: #04C35C;
-  color: white !important;
-}
+  .dropdown-item:hover {
+    background-color: #04C35C;
+    color: white !important;
+  }
 
-/* Анимация для стрелки при открытии меню */
-.dropdown.open .dropdown-toggle img {
-  transform: rotate(180deg);
-}
+  /* Анимация для стрелки при открытии меню */
+  .dropdown.open .dropdown-toggle img {
+    transform: rotate(180deg);
+  }
 
 /* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
@@ -1310,8 +1324,92 @@ body {
     transform: translateY(0);
   }
 
-  .dropdown-item {
-    padding: 15px 20px;
-    font-size: 18px;
+
+    /* Стили для формы выхода */
+
+
+  .logout-button {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      padding: 10px 20px !important;
+      margin: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
   }
+
+  .logout-button:hover {
+    background-color: #04C35C !important;
+    color: white !important;
+  }
+}
+
+/* Стили для поля загрузки файла */
+.file-upload-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.file-upload-wrapper input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 90%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-name {
+    flex-grow: 1;
+    padding: 12px 15px;
+    max-width: 275px;
+    height: 11px;
+    background: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 30px 0 0 30px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3)!important;
+    border-right: none;
+    font-size: 14px;
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-upload-btn {
+    padding: 7px 10px!important;
+    background: #04C35C;
+    color: white;
+    border: 1px solid #ddd;
+    border-radius: 0 30px 30px 0;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3)!important;
+    margin: 0!important;
+    height: 23px;
+}
+
+.file-upload-btn:hover {
+    background: #d0d0d0;
+}
+.file-name{
+  margin: 0;
+}
+
+/* Стиль для контейнера поля ввода */
+.error {
+  margin: 0;
+  color: #ff0000;
+  list-style: none;
 }

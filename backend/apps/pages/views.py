@@ -1,13 +1,11 @@
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import login
+from django.urls import reverse_lazy
 from django.views.generic import (CreateView,
-                                  ListView,
-                                  DetailView,
                                   TemplateView)
 
-from apps.orders.models import Order
 from apps.projects.models import Project, Category
 from apps.users.models import CustomUser
+from .forms import CustomUserForm
 
 
 class IndexListView(TemplateView):
@@ -25,3 +23,16 @@ class IndexListView(TemplateView):
             {'projects': self.get_projects(),
              'category': self.get_category()})
         return context
+
+
+class UserCreateView(CreateView):
+    model = CustomUser
+    form_class = CustomUserForm
+    template_name = 'registration/registrations.html'
+    success_url = reverse_lazy('pages:index')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request,
+              self.object)
+        return response

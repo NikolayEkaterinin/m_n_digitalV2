@@ -15,7 +15,7 @@
         <div class="registration">
           {% if not user.is_authenticated %}
             <a class="registration_link login" href="#">Войти</a>
-            <a class="registration_link signup" href="#">Регистрация</a>
+            <a class="registration_link signup" href="{% url 'pages:create_user' %}">Регистрация</a>
           {% else %}
             <div class="account_preview">
               <h4>{{ user.last_name }} {{ user.first_name }}</h4>
@@ -26,9 +26,14 @@
                   <img src="{% static 'img/akar-icons_chevron-down.svg' %}">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item" href="#">Профиль</a></li>
-                  <li><a class="dropdown-item" href="#">Настройки</a></li>
-                  <li><a class="dropdown-item" href="#">Выйти</a></li>
+                    <li><a class="dropdown-item" href="#">Профиль</a></li>
+                    <li><a class="dropdown-item" href="#">Настройки</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" class="logout-form">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item logout-button">Выйти</button>
+                        </form>
+                    </li>
                 </ul>
               </div>
             </div>
