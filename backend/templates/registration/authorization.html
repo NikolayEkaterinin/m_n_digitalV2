@@ -1,56 +1,85 @@
-<!doctype html>
-<html class="no-js" lang="">
+{% extends 'base.html' %}
+{% load static %}
 
+{% block content %}
+  <!doctype html>
+  <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M&N Digital</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="">
-
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <meta property="og:image:alt" content="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-
-    <meta name="theme-color" content="#fafafa">
+    <title>M&N Digital - Регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700;800&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   </head>
-<body>
-    
-    <div class="auth_view">
-        <div class="authorization_form">
-            <p>Добро пожаловать!</p>
-            <h2>Войдите в свой аккаунт</h2>
-            <div class="input_auth_data">
-                <label for="username">Логин</label>
-                <input type="text" id="username" placeholder="Введите логин">
-            </div>
-            <div class="input_auth_data">
-                <label for="password">Пароль</label>
-                <input type="password" id="password" placeholder="Введите пароль">
-            </div>
+  <body>
 
-            <div class="forgot_pass">
-                <a href="">Забыли пароль?</a>
-            </div>
-            <div class="enter_auth">
-                <a href="">Войти</a>
-            </div>
+  <div class="auth_view">
+    <div class="authorization_form">
+      <p>Добро пожаловать!</p>
+      <h2>Войдите в свой аккаунт</h2>
 
+      <form method="post" enctype="multipart/form-data"
+            class="registration-form">
+        {% csrf_token %}
 
-            <div class="registration">
-                <p>У Вас ещё нет аккаунта?</p>
-                <a href="">Зарегистрируйтесь</a>
-            </div>
+        <!-- Основные поля формы -->
+        <div class="input_auth_data">
+          <label for="{{ form.username.id_for_label }}">Логин</label>
+          <input type="text"
+                 name="{{ form.username.name }}"
+                 id="{{ form.username.id_for_label }}"
+                 class="form-control"
+                 required
+                 autofocus>
+          {% if form.username.errors %}
+            <div class="error">Проверьте введенное логин</div>
+          {% endif %}
         </div>
-        <div class="authorization_photo">
-            <img src="img/auth_photo.png" alt="">
+
+        <div class="input_auth_data">
+          <label for="{{ form.password.id_for_label }}">Пароль</label>
+          <input type="password"
+                 name="{{ form.password.name }}"
+                 id="{{ form.password.id_for_label }}"
+                 class="form-control"
+                 required>
+          {% if form.password1.errors %}
+            <div class="error">Проверьте введенный пароль</div>
+          {% endif %}
         </div>
+
+        <div class="enter_auth">
+          <button type="submit">Войти</button>
+        </div>
+      </form>
+
+      <div class="registration">
+        <p>Еще нет аккаунта?</p>
+        <a href="{% url 'pages:create_user' %}">Зарегистрироваться</a>
+      </div>
     </div>
+    <div class="authorization_photo">
+      <img src="{% static 'img/auth_photo.png' %}"
+           alt="Войти в M&N Digital">
+    </div>
+  </div>
 
-</body>
-</html>
+  <script>
+      // Обработка отображения имени файла
+      document.getElementById('{{ form.image.id_for_label }}').addEventListener('change', function (e) {
+          const fileName = this.files[0] ? this.files[0].name : 'Файл не выбран';
+          document.querySelector('.file-name').textContent = fileName;
+      });
+
+      // Маска для телефона
+      document.getElementById('id_telephone').addEventListener('input', function (e) {
+          this.value = this.value.replace(/[^\d+]/g, '');
+      });
+  </script>
+  </body>
+  </html>
+{% endblock %}

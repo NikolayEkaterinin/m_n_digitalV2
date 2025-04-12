@@ -14,7 +14,7 @@
         </div>
         <div class="registration">
           {% if not user.is_authenticated %}
-            <a class="registration_link login" href="#">Войти</a>
+            <a class="registration_link login" href="{% url 'pages:login' %}">Войти</a>
             <a class="registration_link signup" href="{% url 'pages:create_user' %}">Регистрация</a>
           {% else %}
             <div class="account_preview">
