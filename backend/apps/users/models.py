@@ -1,6 +1,11 @@
+from datetime import timedelta
+
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.core.validators import FileExtensionValidator
+from django.contrib.sessions.models import Session
+from django.core.cache import cache
 from django.db import models
-from django.core.validators import MaxValueValidator, FileExtensionValidator
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from config.validators import telegram_regex, phone_regex, vk_regex
@@ -42,6 +47,13 @@ class CustomUser(AbstractUser):
         help_text=_('Specific permissions for this user.'),
         related_name="customuser_permissions",
         related_query_name="customuser",
+    )
+    position = models.CharField(
+        max_length=30,
+        verbose_name='Должность',
+        null=True,
+        blank=True,
+        default='Пользователь'
     )
 
     image = models.ImageField(
@@ -113,6 +125,41 @@ class CustomUser(AbstractUser):
         verbose_name=_('LinkedIn'),
         help_text=_('Введите ссылку на ваш профиль в LinkedIn')
     )
+    last_seen = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def is_online(self):
+        cache_key = f'user_{self.pk}_online_status'
+        cached_status = cache.get(cache_key)
+
+        if cached_status is not None:
+            return cached_status
+
+        from django.contrib.sessions.models import Session
+
+        # Проверка активных сессий
+        sessions = Session.objects.filter(expire_date__gte=timezone.now())
+        has_active_session = any(
+            str(self.pk) == session.get_decoded().get('_auth_user_id', '')
+            for session in sessions
+        )
+
+        # Проверка времени последней активности
+        recently_active = (
+                self.last_seen and
+                (timezone.now() - self.last_seen) < timedelta(minutes=5)
+        )
+
+        online_status = has_active_session and recently_active
+        cache.set(cache_key, online_status, 60)  # Кешируем на 1 минуту
+        return online_status
+
+    def get_active_sessions(self):
+        """Возвращает ключи активных сессий пользователя"""
+        from django.contrib.sessions.models import Session
+        return [session.session_key for session in Session.objects.filter(
+            expire_date__gte=timezone.now()
+        ) if str(self.pk) in session.get_decoded().get('_auth_user_id', '')]
 
     class Meta:
         verbose_name = _("Пользователь")

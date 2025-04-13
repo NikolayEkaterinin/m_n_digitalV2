@@ -19,14 +19,14 @@
           {% else %}
             <div class="account_preview">
               <h4>{{ user.last_name }} {{ user.first_name }}</h4>
-              <img src="{{ user.image }}">
+              <img src="{{ request.user.image.url }}">
 
               <div class="dropdown" id="accountDropdown">
                 <a href="#" class="dropdown-toggle" id="dropdownMenuButton">
                   <img src="{% static 'img/akar-icons_chevron-down.svg' %}">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{% url 'pages:profile' pk=request.user.pk %}">Профиль</a></li>
                     <li><a class="dropdown-item" href="#">Настройки</a></li>
                     <li>
                         <form action="{% url 'logout' %}" method="post" class="logout-form">

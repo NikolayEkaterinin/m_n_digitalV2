@@ -15,6 +15,7 @@ class CustomUserAdmin(admin.ModelAdmin):
                     'ok',
                     'whatsapp',
                     'linkedin',
+                    'position',
                     )
     search_fields = ('username',
                      'first_name',
@@ -26,6 +27,7 @@ class CustomUserAdmin(admin.ModelAdmin):
                      'ok',
                      'whatsapp',
                      'linkedin',
+                     'position',
                      )
     list_filter = ('username',
                    'first_name',
@@ -37,4 +39,5 @@ class CustomUserAdmin(admin.ModelAdmin):
                    'ok',
                    'whatsapp',
                    'linkedin',
+                   'position',
                    )

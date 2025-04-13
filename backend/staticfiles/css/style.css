@@ -680,7 +680,7 @@ body {
     transition: max-height 0.5s ease-in-out;
 }
 .contact_details.show {
-    max-height: 300px;
+    max-height: 1000px;
 }
 .contact_details.show .contact_line {
     opacity: 1;
@@ -1412,4 +1412,26 @@ body {
   margin: 0;
   color: #ff0000;
   list-style: none;
+}
+
+/* Стили для статуса */
+.online_status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+}
+
+.online-text {
+    color: #4CAF50;  /* Зеленый для онлайн */
+    margin: 0;
+}
+
+.offline-text {
+    color: #F44336;  /* Красный для оффлайн */
+    margin: 0;
 }
