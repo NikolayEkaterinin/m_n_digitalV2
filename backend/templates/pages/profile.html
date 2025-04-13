@@ -6,7 +6,13 @@
         <div class="profile_data">
           <h3>{{ profile_user.position}}</h3>
           <h2><span>{{ profile_user.first_name }}</span> {{ profile_user.last_name }}</h2>
-          <p>Здесь будет несколько слов о себе</p>
+          {% if profile_user.bio  %}
+            <p>{{ profile_user.bio }}</p>
+          {% elif user.id == profile_user.id %}
+            <p>Вы пока ничего о себе не рассказали</p>
+          {% else %}
+            <p>Пользователь пока ничего о себе не рассказал</p>
+          {% endif %}
           <div class="contacts_info">
               <div class="title_contact" onclick="toggleContacts()">
                   <p>Контактная информация</p>
@@ -79,10 +85,18 @@
         </div>
       </div>
       <div class="order">
-        <h2>Мои заказы</h2>
+        {% if profile_user.is_staff == True and user.id == profile_user.id %}
+          <h2>Мои проекты</h2>
+        {% elif profile_user.is_staff == True %}
+          <h2>Проекты пользователя</h2>
+        {% elif profile_user.id == user.id %}
+          <h2>Мои заказы</h2>
+        {% elif profile_user.id != user.id %}
+          <h2>Заказы пользователя</h2>
+        {% endif %}
         <div class="order_list">
           <div id="create_order" class="order_cart">
-            <img  src="img/CirclePlusMajor%201.svg">
+            <img  src="{% static 'img/CirclePlusMajor%201.svg' %}">
 
             <h4>Создать заказ</h4>
 

@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (CreateView,
                                   TemplateView,
                                   FormView,
@@ -55,7 +55,7 @@ class UserLoginView(FormView):
     template_name = 'registration/authorization.html'
     form_class = AuthenticationForm
     success_url = reverse_lazy(
-        'pages:index')  # Пока нет профиля переходим на основную страницу
+        'pages:profile')  # Пока нет профиля переходим на основную страницу
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -63,10 +63,12 @@ class UserLoginView(FormView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        # Выполняем аутентификацию
         user = form.get_user()
         login(self.request, user)
-        messages.success(self.request,
-                         f'Добро пожаловать, {user.username}!')
+
+        # Перенаправляем на профиль с ID пользователя
+        self.success_url = reverse('pages:profile', kwargs={'pk': user.pk})
         return super().form_valid(form)
 
     def form_invalid(self, form):

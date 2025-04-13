@@ -1,5 +1,5 @@
-from django.utils import timezone
 from django.core.cache import cache
+from django.utils import timezone
 
 
 class UserActivityMiddleware:
