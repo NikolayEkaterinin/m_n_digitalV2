@@ -95,47 +95,47 @@
           <h2>Заказы пользователя</h2>
         {% endif %}
         <div class="order_list">
-          <div id="create_order" class="order_cart">
-            <img  src="{% static 'img/CirclePlusMajor%201.svg' %}">
+        {% if profile_user.id == user.id and profile_user.is_staff == False %}
+          <a href="#" id="create_order" class="order_cart">
+            <div id="create_order" class="order_cart">
+              <img  src="{% static 'img/CirclePlusMajor%201.svg' %}">
+              <h4>Создать заказ</h4>
+            </div>
+           </a>
 
-            <h4>Создать заказ</h4>
+        {% endif %}
+        {% if profile_user.is_staff == True and profile_user.id == user.id %}
+            {% for project in projects %}
+                <div class="order_cart">
+                    {% with project.media_files.first as media %}
+                        {% if media %}
+                            <img src="{{ media.file.url }}" alt="{{ project.title }}">
+                        {% else %}
+                            <img src="/static/images/default_project.jpg" alt="No image">
+                        {% endif %}
+                    {% endwith %}
+                    <h4>{{ project.title }}</h4>
+                    <h5>{{ project.price }}</h5>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for project in projects %}
+                <div class="order_cart">
+                    {% with project.media_files.first as media %}
+                        {% if media %}
+                            <img src="{{ media.file.url }}" alt="{{ project.title }}">
+                        {% else %}
+                            <img src="/static/images/default_project.jpg" alt="No image">
+                        {% endif %}
+                    {% endwith %}
+                    <h4>{{ project.title }}</h4>
+                    <h5>{{ project.price }}</h5>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название заказа</h4>
-            <h5>Цена заказа</h5>
-          </div>
+
+
         </div>
       </div>
 {% endblock content %}

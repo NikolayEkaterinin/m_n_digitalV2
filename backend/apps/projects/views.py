@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
+from apps.pages.views import GeneralListView
 from .models import Project, ServiceOption
 from .serializers import ProjectSerializer, ServiceOptionSerializer
 
@@ -27,3 +28,24 @@ class ServiceOptionViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+"""
+Далее идут views для отображение на странице услуг и проектов
+"""
+
+
+class ProjectListView(GeneralListView):
+    template_name = 'pages/service.html'
+    project_type = Project.PROJECT
+    project_limit = None
+    category_limit = None
+    random_order = True
+
+
+class ServiceListView(GeneralListView):
+    template_name = 'pages/service.html'
+    project_type = Project.SERVICE
+    project_limit = None
+    category_limit = None
+    random_order = True

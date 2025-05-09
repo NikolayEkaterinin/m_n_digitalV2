@@ -726,12 +726,12 @@ body {
 }
 
 
-.order_list{
+.order_list {
   width: 100%;
   gap: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Адаптивные колонки */
+  justify-items: center; /* Центрирование элементов */
 }
 
 .order_cart {
@@ -741,6 +741,15 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+.order_cart:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+.order_cart:active {
+  transform: scale(0.98);
 }
 
 .order_cart h4 {
@@ -748,6 +757,7 @@ body {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
   font-size: 18px;
+  text-decoration: none;
 }
 
 .order_cart h5 {
@@ -761,6 +771,7 @@ body {
 .order_cart img {
   width: 308px;
   height: 172px;
+  margin-top: 30px;
 }
 
 #create_order {
@@ -769,6 +780,10 @@ body {
   justify-content: center;
   align-items: center;
   background: #D7FFEC;
+  width: 100%; /* Важно для грид-ячейки */
+  height: 100%; /* Заполняет ячейку по высоте */
+  text-decoration: none !important; /* Перебиваем любые наследуемые стили */
+  color: inherit; /* Наследуем цвет текста */
 }
 
 #create_order img {
@@ -781,6 +796,9 @@ body {
   font-weight: var(--fw-600);
   font-size: 30px;
   color: #1DBF73;
+  text-decoration: none !important; /* Явное отключение */
+  margin: 0; /* Убираем дефолтные отступы */
+  padding: 10px 0; /* Контролируемые отступы */
 }
 
 .setting {

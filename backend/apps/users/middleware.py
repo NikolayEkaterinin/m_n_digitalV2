@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.core.cache import cache
+from django.shortcuts import redirect
 from django.utils import timezone
 
 
@@ -18,3 +20,6 @@ class UserActivityMiddleware:
             cache.delete(f'user_{request.user.pk}_online_status')
 
         return response
+
+
+

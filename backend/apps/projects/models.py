@@ -7,6 +7,8 @@ from django.core.validators import URLValidator
 from django.db import models
 from django.utils.text import slugify
 
+from apps.users.models import CustomUser
+
 
 class MediaFile(models.Model):
     MEDIA_TYPES = (
@@ -28,7 +30,7 @@ class MediaFile(models.Model):
         if self.content_object and hasattr(self.content_object, 'title'):
             project_name = getattr(self.content_object, 'title', 'unknown')
             # Создаем безопасное имя папки
-            safe_name = slugify(project_name) or f"project_{self.object_title}"
+            safe_name = slugify(project_name) or f"project_{self.object_id}"
             # Полный путь: media/название_проекта/файл
             return os.path.join(base_path, safe_name, filename)
 
@@ -56,6 +58,9 @@ class Category(models.Model):
     )
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Категория',
         verbose_name_plural = 'Категории'
@@ -68,6 +73,13 @@ class Project(models.Model):
         (PROJECT, 'Проект'),
         (SERVICE, 'Услуга'),
     ]
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='projects',
+        verbose_name='Автор проекта',
+        help_text="Пользователь, создавший этот проект"
+    )
 
     type = models.CharField(
         max_length=10,

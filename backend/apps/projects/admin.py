@@ -36,7 +36,7 @@ class ServiceOptionInline(admin.StackedInline):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
-    'id', 'type', 'title', 'category', 'price', 'deadline_days', 'url')
+    'id', 'type', 'title', 'category', 'price', 'deadline_days', 'url', 'user')
     list_filter = ('type', 'category')
     search_fields = ('title', 'description')
     list_editable = ('price', 'deadline_days')
@@ -44,7 +44,7 @@ class ProjectAdmin(admin.ModelAdmin):
     inlines = [MediaFileInline, ServiceOptionInline]
     fieldsets = (
         (None, {
-            'fields': ('type', 'title', 'description', 'category')
+            'fields': ('type', 'title', 'description', 'category', 'user')
         }),
         ('Детали', {
             'fields': ('price', 'deadline_days', 'url')

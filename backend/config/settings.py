@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*',]
 
@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'apps.users.middleware.UserActivityMiddleware',
+
 ]
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -77,6 +78,7 @@ CACHES = {
 
 ROOT_URLCONF = 'config.urls'
 
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles'
 ]

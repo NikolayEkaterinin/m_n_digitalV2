@@ -19,21 +19,57 @@ from .forms import CustomUserForm
 User = get_user_model()
 
 
-class IndexListView(TemplateView):
-    template_name = 'pages/index.html'
+class GeneralListView(TemplateView):
+    """Базовый класс для страниц с общими данными (проекты и категории)"""
+    project_model = Project  # Модель проектов
+    category_model = Category  # Модель категорий
+    project_limit = None  # Лимит проектов (None - без лимита)
+    category_limit = None  # Лимит категорий по умолчанию как в оригинальном коде
+    project_type = None  # Фильтр по типу (project/service)
+    random_order = False  # Случайный порядок для проектов
 
-    def get_projects(self):
-        return Project.objects.order_by('?')[:6]
+    def get_projects_queryset(self):
+        """QuerySet для проектов/услуг с учетом всех параметров"""
+        qs = self.project_model.objects.all()
 
-    def get_category(self):
-        return Category.objects.order_by('?')[:7]
+        if self.project_type:
+            qs = qs.filter(type=self.project_type)
+
+        if self.random_order:
+            qs = qs.order_by('?')
+
+        if self.project_limit:
+            qs = qs[:self.project_limit]
+
+        return qs
+
+    def get_category_queryset(self):
+        """QuerySet для категорий"""
+        qs = self.category_model.objects.all()
+
+        if self.random_order:
+            qs = qs.order_by('?')
+
+        if self.category_limit:
+            qs = qs[:self.category_limit]
+
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
-            {'projects': self.get_projects(),
-             'category': self.get_category()})
+        context.update({
+            'projects': self.get_projects_queryset(),
+            'category': self.get_category_queryset(),
+            'current_type': self.project_type  # Для использования в шаблоне
+        })
         return context
+
+
+class IndexListView(GeneralListView):
+    template_name = 'pages/index.html'
+    project_limit = 6
+    category_limit = 7
+    random_order = True
 
 
 # Create user
@@ -79,9 +115,14 @@ class UserLoginView(FormView):
 
 # Profile
 class ProfileView(LoginRequiredMixin, ListView):
-    model = Order
     template_name = 'pages/profile.html'
     context_object_name = 'orders'
+
+    def get_projects(self):
+        return Project.objects.filter(user=self.request.user).order_by('-id')
+
+    def get_ordering(self):
+        return Order.objects.filter(user=self.request.user).order_by('-id')
 
     def get_queryset(self):
         profile_user = self.get_profile_user()
@@ -100,6 +141,8 @@ class ProfileView(LoginRequiredMixin, ListView):
         profile_user = self.get_profile_user()
 
         context.update({
+            'projects': self.get_projects(),
+            'ordering': self.get_ordering(),
             'profile_user': profile_user,
             'is_own_profile': profile_user == self.request.user,
             'user': self.request.user  # Текущий авторизованный пользователь
