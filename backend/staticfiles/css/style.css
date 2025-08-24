@@ -435,6 +435,15 @@ body {
   line-height: 1.4;
 }
 
+.project_price {
+  font-family: var(--font-montserrat);
+  font-weight: var(--fw-600);
+  font-size: 18px;
+  color: #1DBF73;
+  text-align: center;
+  margin: 10px 0;
+}
+
 
 .project_list img {
   width: 100%;
@@ -854,7 +863,7 @@ body {
   align-items: center;
   background: linear-gradient(135deg, #D7FFEC, #E8FFF4);
   width: 100%; /* Важно для грид-ячейки */
-  height: 280px; /* Фиксированная высота вместо 100% */
+  height: 100%; /* Заполняет ячейку по высоте */
   text-decoration: none !important; /* Перебиваем любые наследуемые стили */
   color: inherit; /* Наследуем цвет текста */
   border-radius: 15px;
@@ -863,6 +872,7 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  border: solid 1px #F2F0FE;
 }
 
 #create_order:hover {
