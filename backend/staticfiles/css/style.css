@@ -649,7 +649,7 @@ img {
 }
 
 .profile_photo {
-  
+  position: relative;
   flex: 0 0 400px;
   width: 400px;
   height: 400px;
@@ -663,6 +663,32 @@ img {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: var(--shadow-md);
+}
+
+.online_status {
+  position: absolute; /* абсолютное позиционирование относительно родителя */
+  top: 10px;   /* отступ сверху */
+  left: 20%;  /* отступ слева */
+  display: flex;
+
+  margin-top: 15%;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.466); /* опционально, чтобы был фон */
+  padding: 2px 6px;
+  border-radius: 12px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+}
+
+.setting {
+  position: absolute;
+  top: 20%;     /* 20% вниз */
+  right: 10%;   /* 10% влево */
+  margin-right: 10%;
 }
 
 .profile_data {
@@ -718,6 +744,7 @@ img {
 .title_contact p {
   font-weight: var(--fw-semibold);
   margin: 0;
+  flex: 0 0 auto;
 }
 
 .toggle-contacts-btn {

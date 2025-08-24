@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="profile_info">
-    <div class="profile_data">
+<div class="profile_info" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+
+    <!-- Левая часть с данными профиля -->
+    <div class="profile_data" style="flex: 1;">
         <h3>{{ profile_user.position }}</h3>
         <h2><span>{{ profile_user.first_name }}</span> {{ profile_user.last_name }}</h2>
 
@@ -29,42 +31,36 @@
                     <p>Ваш ВК: {{ profile_user.vk }}</p>
                 </div>
                 {% endif %}
-
                 {% if profile_user.telegram %}
                 <div class="contact_line">
                     <img src="{% static 'img/telegram.svg' %}" alt="">
                     <p>Ваш телеграм: {{ profile_user.telegram }}</p>
                 </div>
                 {% endif %}
-
                 {% if profile_user.email %}
                 <div class="contact_line">
                     <img src="{% static 'img/email.svg' %}" alt="">
                     <p>Ваш email: {{ profile_user.email }}</p>
                 </div>
                 {% endif %}
-
                 {% if profile_user.telephone %}
                 <div class="contact_line">
                     <img src="{% static 'img/telephone.svg' %}" alt="">
                     <p>Ваш телефон: {{ profile_user.telephone }}</p>
                 </div>
                 {% endif %}
-
                 {% if profile_user.linkedin %}
                 <div class="contact_line">
                     <img src="{% static 'img/linkedin.svg' %}" alt="">
                     <p>Linkedin: {{ profile_user.linkedin }}</p>
                 </div>
                 {% endif %}
-
                 {% if profile_user.whatsapp %}
                 <div class="contact_line">
                     <img src="{% static 'img/whatsapp.svg' %}" alt="">
                     <p>WhatsApp: {{ profile_user.whatsapp }}</p>
                 </div>
                 {% endif %}
-
                 {% if profile_user.ok %}
                 <div class="contact_line">
                     <img src="{% static 'img/ok.svg' %}" alt="">
@@ -75,28 +71,26 @@
         </div>
     </div>
 
-    <div class="online_status">
-        {% if profile_user.last_seen and profile_user.last_seen|timesince < '5 minutes' %}
-            <img src="{% static 'img/Ellipse%2069.svg' %}" class="status-dot">
-            <span class="online-text">В сети</span>
+    <!-- Правая часть: фото профиля + статус -->
+    <div class="profile_photo" style="position: relative; width: 400px; height: 400px; flex-shrink: 0;">
+        {% if profile_user.image %}
+            <img src="{{ profile_user.image.url }}" style="width: 100%; height: 100%; object-fit: cover;">
         {% else %}
-            <span class="offline-text">Не в сети</span>
+            <img src="{% static 'img/default-avatar.png' %}" style="width: 100%; height: 100%; object-fit: cover;">
         {% endif %}
+
+        <!-- Онлайн статус -->
+        <div class="online_status" style="position: absolute; top: 10px; left: 10px; display: flex; align-items: center; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 12px;">
+            {% if profile_user.last_seen and profile_user.last_seen|timesince < '5 minutes' %}
+                <img src="{% static 'img/Ellipse%2069.svg' %}" class="status-dot" style="width: 10px; height: 10px; margin-right: 4px;">
+                <span class="online-text">В сети</span>
+            {% else %}
+                <span class="offline-text">Не в сети</span>
+            {% endif %}
+        </div>
+
     </div>
 
-    {% if user.id == profile_user.id %}
-        <a href="{% url 'pages:profile' pk=user.id %}?edit=true" class="setting">
-            <img src="{% static 'img/SettingsMajor%201.svg' %}" alt="Настройки">
-        </a>
-    {% endif %}
-
-    <div class="profile_photo">
-       {% if profile_user.image %}
-        <img src="{{ profile_user.image.url }}">
-        {% else %}
-        <img src="{% static 'img/default-avatar.png' %}">
-        {% endif %}
-    </div>
 </div>
 
 <div class="order">
