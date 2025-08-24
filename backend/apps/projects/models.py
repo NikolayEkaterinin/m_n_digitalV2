@@ -132,6 +132,11 @@ class Project(models.Model):
         verbose_name = 'Проект/Услуга'
         verbose_name_plural = 'Проекты/Услуги'
 
+    def get_absolute_url(self):
+        """Возвращает URL для детального просмотра проекта/услуги"""
+        from django.urls import reverse
+        return reverse('projects:detail', kwargs={'pk': self.pk})
+
 
 class ServiceOption(models.Model):
     project = models.ForeignKey(

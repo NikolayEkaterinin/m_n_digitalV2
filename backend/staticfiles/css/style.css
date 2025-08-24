@@ -368,13 +368,19 @@ body {
 }
 
 .header_project {
-  margin-left: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  align-content: center;
-  text-align: center;
+  margin-bottom: 15px;
+}
 
+.header_project h3 {
+  margin: 10px 0 0 0;
+  font-family: var(--font-montserrat);
+  font-weight: var(--fw-600);
+  font-size: 18px;
+  color: #333;
+  text-align: center;
 }
 
 .project h2 {
@@ -400,67 +406,74 @@ body {
   border: solid 1px #F2F0FE; /* Устанавливаем бордер (с правильным разделением) */
   border-radius: 15px; /* Добавляем закругление углов */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Добавляем тень */
-}
-
-
-.project_cart a {
-  font-family: var(--font-montserrat);
-  font-weight: var(--fw-500);
-  font-size: 14px;
-  display: flex;              /* Используем flex для выравнивания */
-  align-items: center;        /* Выравнивание по вертикали */
-  justify-content: center;    /* Выравнивание по горизонтали */
-  width: 100%;                /* Ссылка будет занимать всю ширину родителя */
-  border-radius: 15px;
-  border: solid #1DBF73 1px;
   text-decoration: none;
-  padding: 6px 0;
-  color: #1DBF73;
+  color: inherit;
   cursor: pointer;
-  transition: 0.1s;
-}
-.project_list a:hover{
-  background: #1DBF73;
-  color: #F2F0FE;
-
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.project_cart h3 {
-  font-family: var(--font-montserrat);
-  font-weight: var(--fw-600);
-  font-size: 18px;
-  align-items: center;
-  text-align: center;
-  align-content: center;
+.project_cart:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: inherit;
 }
+
+
 
 .project_cart p {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-400);
   font-size: 14px;
-  text-align: left;
+  text-align: center;
+  color: #666;
+  margin: 10px 0 20px 0;
+  flex-grow: 1;
+  line-height: 1.4;
 }
 
 
 .project_list img {
-  width: 64px;
-  height: auto;
-  border-radius: 50%;
-  margin-right: 40px;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 0 15px 0;
 }
 
 #all_projects_cart {
   padding: 0; /* Убираем отступы */
   margin: 0;
   background: #F2F0FE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #all_projects {
-  padding: 0;
+  padding: 20px;
   width: 100%;
   height: 100%;
   background: #F2F0FE;
   border: none;
+  text-decoration: none;
+  color: #333;
+  font-family: var(--font-montserrat);
+  font-weight: var(--fw-600);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+#all_projects:hover {
+  background: #E8F4FD;
+  text-decoration: none;
+  color: #1DBF73;
 }
 
 .process {
@@ -600,13 +613,13 @@ body {
 }
 
 .account_preview img {
-  width: 80px;!important;
+  width: 80px;
   height: auto;
   border-radius: 50%;
 }
 
 .account_preview a img {
-  width: 24px;!important;
+  width: 24px;
   height: auto;
 }
 
@@ -728,50 +741,110 @@ body {
 
 .order_list {
   width: 100%;
-  gap: 20px;
+  gap: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Адаптивные колонки */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Увеличиваем минимальную ширину */
   justify-items: center; /* Центрирование элементов */
+  padding: 20px 0;
 }
 
 .order_cart {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Выравниваем по верху */
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   text-decoration: none;
+  background: white;
+  padding: 25px;
+  margin: 10px;
+  transition: all 0.3s ease;
+  width: 100%; /* Карточка занимает всю ширину ячейки */
+  height: 100%; /* Карточка занимает всю высоту ячейки */
+  position: relative; /* Для позиционирования кнопки */
+  color: inherit; /* Наследуем цвет текста */
 }
+
 .order_cart:hover {
   opacity: 0.9;
   transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: inherit;
 }
+
 .order_cart:active {
   transform: scale(0.98);
 }
 
 .order_cart h4 {
-  margin-left: 1rem;
+  margin: 15px 0 10px 0;
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
-  font-size: 18px;
+  font-size: 20px; /* Увеличиваем размер заголовка */
   text-decoration: none;
+  color: #333;
 }
 
 .order_cart h5 {
-  margin-left: 1rem;
+  margin: 10px 0 15px 0;
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
   font-size: 18px;
   color: #1DBF73;
 }
 
+.order_cart p {
+  margin: 10px 0 20px 0;
+  font-family: var(--font-montserrat);
+  font-weight: var(--fw-400);
+  font-size: 15px; /* Увеличиваем размер описания */
+  color: #666;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
 .order_cart img {
-  width: 308px;
-  height: 172px;
-  margin-top: 30px;
+  width: 100%;
+  height: 200px; /* Увеличиваем высоту изображения */
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0;
+}
+
+/* Стили для кнопки "Посмотреть" */
+.view_project {
+  display: inline-block;
+  background: linear-gradient(135deg, #1DBF73, #18A06B);
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px; /* Увеличиваем padding */
+  border-radius: 25px;
+  font-family: var(--font-montserrat);
+  font-weight: var(--fw-600);
+  font-size: 15px; /* Увеличиваем размер шрифта */
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(29, 191, 115, 0.3);
+  margin-top: auto; /* Кнопка прижимается к низу */
+  width: 100%; /* Кнопка занимает всю ширину */
+  box-sizing: border-box;
+  pointer-events: none; /* Отключаем события мыши для кнопки */
+}
+
+.view_project:hover {
+  background: linear-gradient(135deg, #18A06B, #1DBF73);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(29, 191, 115, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.view_project:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(29, 191, 115, 0.3);
 }
 
 #create_order {
@@ -779,26 +852,39 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #D7FFEC;
+  background: linear-gradient(135deg, #D7FFEC, #E8FFF4);
   width: 100%; /* Важно для грид-ячейки */
-  height: 100%; /* Заполняет ячейку по высоте */
+  height: 280px; /* Фиксированная высота вместо 100% */
   text-decoration: none !important; /* Перебиваем любые наследуемые стили */
   color: inherit; /* Наследуем цвет текста */
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#create_order:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(29, 191, 115, 0.2);
 }
 
 #create_order img {
-  width: 70px;
+  width: 50px; /* Уменьшаем размер иконки */
   height: auto;
+  margin-bottom: 15px;
 }
 
 #create_order h4 {
   font-family: var(--font-montserrat);
   font-weight: var(--fw-600);
-  font-size: 30px;
+  font-size: 20px; /* Уменьшаем размер текста */
   color: #1DBF73;
   text-decoration: none !important; /* Явное отключение */
   margin: 0; /* Убираем дефолтные отступы */
   padding: 10px 0; /* Контролируемые отступы */
+  text-align: center;
 }
 
 .setting {
@@ -825,35 +911,50 @@ body {
 
 .line_category_service {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 20px 0;
 }
 
 
 
 .category_service a {
   font-family: var(--font-montserrat);
-  font-weight: var(--fw-400);
-  font-size: 14px!important;
+  font-weight: var(--fw-500);
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 8px;
-  padding: 5px 13px!important;
-  color: #222222;
-  border-radius: 15px;
+  padding: 12px 20px;
+  color: #333;
+  border-radius: 25px;
   text-decoration: none;
   cursor: pointer;
-  transition: 0.3s;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.category_service a:hover {
+  background: linear-gradient(135deg, #1DBF73, #18A06B);
+  color: white;
+  border-color: #1DBF73;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(29, 191, 115, 0.3);
+}
 
-.category_service a:hover{
-  background-color: #f0f0f0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+.category_service a.active {
+  background: linear-gradient(135deg, #1DBF73, #18A06B);
+  color: white;
+  border-color: #1DBF73;
+  box-shadow: 0 4px 15px rgba(29, 191, 115, 0.3);
 }
 
 .service {
@@ -862,8 +963,24 @@ body {
 
 .service h2 {
   font-family: var(--font-montserrat);
-  font-weight: var(--fw-500);
+  font-weight: var(--fw-600);
+  font-size: 32px;
+  color: #333;
   margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+}
+
+.service h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #1DBF73, #18A06B);
+  border-radius: 2px;
 }
 
 /*  Detail */
@@ -1452,4 +1569,90 @@ body {
 .offline-text {
     color: #F44336;  /* Красный для оффлайн */
     margin: 0;
+}
+
+/* Адаптивные стили для карточек проектов */
+@media (max-width: 768px) {
+  .order_list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px 0;
+  }
+  
+  .order_cart {
+    margin: 5px;
+    padding: 15px;
+  }
+  
+  .order_cart img {
+    height: 150px;
+  }
+  
+  .line_category_service {
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 0;
+  }
+  
+  .category_service a {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .service h2 {
+    font-size: 24px;
+    margin-bottom: 2rem;
+  }
+  
+  .view_project {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .order_cart {
+    padding: 12px;
+  }
+  
+  .order_cart h4 {
+    font-size: 16px;
+  }
+  
+  .order_cart h5 {
+    font-size: 16px;
+  }
+  
+  .order_cart p {
+    font-size: 13px;
+  }
+  
+  .category_service a {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+/* Стили для кнопки "Посмотреть" в карточках проектов на главной странице */
+.project_cart .view_project {
+  background: linear-gradient(135deg, #1DBF73, #18A06B);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: var(--font-montserrat);
+  font-weight: var(--fw-600);
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(29, 191, 115, 0.3);
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.project_cart:hover .view_project {
+  background: linear-gradient(135deg, #18A06B, #1DBF73);
+  box-shadow: 0 4px 15px rgba(29, 191, 115, 0.4);
 }

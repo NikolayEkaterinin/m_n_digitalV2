@@ -12,7 +12,7 @@
                 <a href="#">{{ category.name }}</a>
               {% endfor %}
 
-                <a id="all_services" href="">Все категории <span class="snap"><i
+                <a id="all_services" href="{% url 'projects:list' %}">Все категории <span class="snap"><i
                     class="fas fa-arrow-right"></i></span></a>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <h2>Наши проекты</h2>
         <div class="project_list">
             {% for project in projects %}
-            <div class="project_cart">
+            <a href="{{ project.get_absolute_url }}" class="project_cart">
                 <div class="header_project">
                   {% with project.media_files.first as media %}
                     {% if media %}
@@ -37,11 +37,11 @@
                     <h3>{{ project.title }}</h3>
                 </div>
                 <p>{{ project.description }}</p>
-                <a href="{{ project.get_absolute_url }}">Посмотреть</a>
-            </div>
+                <span class="view_project">Посмотреть</span>
+            </a>
             {% endfor %}
             <div id="all_projects_cart" class="project_cart">
-                <a id="all_projects" href="#">Смотреть все проекты <span class="snap"><i
+                <a id="all_projects" href="{% url 'projects:list' %}">Смотреть все проекты <span class="snap"><i
                     class="fas fa-arrow-right"></i></span></a>
             </div>
         </div>

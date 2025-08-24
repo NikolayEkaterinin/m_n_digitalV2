@@ -1,141 +1,47 @@
-<!doctype html>
-<html class="no-js" lang="">
+{% extends 'base.html' %}
+{% load static %}
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M&N Digital</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="">
-
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <meta property="og:image:alt" content="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-
-    <meta name="theme-color" content="#fafafa">
-  </head>
-
-  <body >
-
-    <div class="container">
-      <div class="header">
-        <div class="logo">
-          <img src="img/logo.png" alt="Фото пока нет">
-          <h3>M&N Digital</h3>
-        </div>
-        <div class="menu">
-          <a class="menu_link">
-            Главная</a>
-          <a class="menu_link">
-            Проекты</a>
-          <a class="menu_link">
-            Услуги</a>
-          <a class="menu_link">
-            Создать заказ</a>
-        </div>
-        <div class="registration">
-          <a class="registration_link login">Войти</a>
-          <a class="registration_link signup">Регистрация</a>
-        </div>
-      </div>
-      <div class="line_category_service">
-        <div class="category_service">
-          <a href="">
-            Дизайн
-          </a>
-        </div>
-        <div class="category_service">
-          <a href="">
-            Анимация
-          </a>
-        </div>
-        <div class="category_service">
-          <a href="">
-            Верстка
-          </a>
-        </div>
-        <div class="category_service">
-          <a href="">
-            Сайт под ключ
-          </a>
-        </div>
-        <div class="category_service">
-          <a href="">
-            Разработка Back-End
-          </a>
-        </div>
-        <div class="category_service">
-          <a href="">
-            Разработка API
-          </a>
-        </div>
-        <div  class="category_service">
-          <a id="all_services" href="">
-            Все категории
-          </a>
-        </div>
-      </div>
-      <div class="service">
-              <h2>В данной категорие 7 услуг</h2>
-        <div class="order_list">
-          <div id="create_order" class="order_cart">
-            <img  src="img/CirclePlusMajor%201.svg">
-
-            <h4>Сделать заказ</h4>
-
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-          <div class="order_cart">
-            <img src="img/order_cart.jpeg">
-            <h4>Название услуги</h4>
-            <h5>Цена услуги</h5>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="text_footer">
-          <h3>M&N Digital</h3>
-        </div>
-        <div class="contacts">
-          <a href=""><img src="img/vk.svg" alt=""></a>
-          <a href=""><img src="img/telegram.svg" alt=""></a>
-          <a href=""><img src="img/icons8-github.svg" alt=""></a>
-          <a href=""><img src="img/email.png" alt=""></a>
-          <a href=""><img src="img/behance.svg" alt=""></a>
-        </div>
-      </div>
+{% block content %}
+<div class="line_category_service">
+    <div class="category_service">
+        <a href="{% url 'projects:services' %}">Услуги</a>
     </div>
+    <div class="category_service">
+        <a href="{% url 'projects:list' %}">Проекты</a>
+    </div>
+    {% for cat in category %}
+    <div class="category_service">
+        <a href="#">{{ cat.name }}</a>
+    </div>
+    {% endfor %}
+    <div class="category_service">
+        <a id="all_services" href="{% url 'projects:list' %}">Все категории</a>
+    </div>
+</div>
+
+<div class="service">
+    <h2>{{ title }} ({{ projects.count }} шт.)</h2>
+    <div class="order_list">
+        <div id="create_order" class="order_cart">
+            <img src="{% static 'img/CirclePlusMajor 1.svg' %}">
+            <h4>Сделать заказ</h4>
+        </div>
+        
+        {% for project in projects %}
+        <a href="{{ project.get_absolute_url }}" class="order_cart">
+            {% with project.media_files.first as media %}
+            {% if media %}
+                <img src="{{ media.file.url }}" alt="{{ project.title }}">
+            {% else %}
+                <img src="{% static 'img/order_cart.jpeg' %}" alt="No image">
+            {% endif %}
+            {% endwith %}
+            <h4>{{ project.title }}</h4>
+            <h5>{{ project.price }} ₽</h5>
+            <p>{{ project.description|truncatewords:20 }}</p>
+            <span class="view_project">Посмотреть</span>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
