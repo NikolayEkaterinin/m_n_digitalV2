@@ -649,17 +649,25 @@ img {
 }
 
 .profile_photo {
-  flex: 0 0 200px;
+  
+  flex: 0 0 400px;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  margin-left: auto; /* сдвигает элемент вправо */
 }
 
 .profile_photo img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
   box-shadow: var(--shadow-md);
 }
 
 .profile_data {
   flex: 1;
+  max-width: 400px; /* можно отрегулировать */
 }
 
 .profile_data h2 {
@@ -685,10 +693,26 @@ img {
 
 .title_contact {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   cursor: pointer;
   margin-bottom: 15px;
+  padding: 10px 15px;
+  background: var(--color-background-alt);
+  border-radius: 8px;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact_title:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact_title.active {
+  background: var(--color-accent);
 }
 
 .title_contact p {
@@ -696,12 +720,60 @@ img {
   margin: 0;
 }
 
+.toggle-contacts-btn {
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-contacts-btn:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.toggle-contacts-btn.active {
+  background: var(--color-secondary);
+  transform: rotate(180deg);
+}
+
+.toggle-contacts-btn img {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
 .contact_details {
   background: var(--color-background-alt);
-  border-radius: var(--border-radius-md);
-  padding: 20px;
+  padding: 15px;
+  border-radius: 8px;
   margin-bottom: 20px;
   display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.contact_details.active {
+  display: block;
+}
+
+.contact_line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .contact_line {

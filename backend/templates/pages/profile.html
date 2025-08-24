@@ -2,160 +2,157 @@
 {% load static %}
 
 {% block content %}
-      <div class="profile_info">
-        <div class="profile_data">
-          <h3>{{ profile_user.position}}</h3>
-          <h2><span>{{ profile_user.first_name }}</span> {{ profile_user.last_name }}</h2>
-          {% if profile_user.bio  %}
+<div class="profile_info">
+    <div class="profile_data">
+        <h3>{{ profile_user.position }}</h3>
+        <h2><span>{{ profile_user.first_name }}</span> {{ profile_user.last_name }}</h2>
+
+        {% if profile_user.bio %}
             <p>{{ profile_user.bio }}</p>
-          {% elif user.id == profile_user.id %}
+        {% elif user.id == profile_user.id %}
             <p>Вы пока ничего о себе не рассказали</p>
-          {% else %}
-            <p>Пользователь пока ничего о себе не рассказал</p>
-          {% endif %}
-          <div class="contact_info">
-              <div class="contact_title" onclick="toggleContactsProfile()">
-                  <h3>Контактная информация</h3>
-                  <img id="chevronProfile" src="{% static 'img/chevron-down.svg' %}" alt="Развернуть">
-              </div>
-                <div id="contactDetailsProfile" class="contact_details" style="display: none;">
-                  {% if profile_user.vk %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/vk.svg' %}" alt="">
-                      <p>Ваш ВК: {{ profile_user.vk }}</p>
-                  </div>
-                  {% endif %}
-
-                  {% if profile_user.telegram %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/telegram.svg' %}" alt="">
-                      <p>Ваш телеграм: {{ profile_user.telegram }}</p>
-                  </div>
-                  {% endif %}
-
-                  {% if profile_user.email %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/email.svg' %}" alt="">
-                      <p>Ваш email: {{ profile_user.email }}</p>
-                  </div>
-                  {% endif %}
-
-                  {% if profile_user.telephone %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/telephone.svg' %}" alt="">
-                      <p>Ваш телефон: {{ profile_user.telephone }}</p>
-                  </div>
-                  {% endif %}
-                  {% if profile_user.linkedin %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/linkedin.svg' %}" alt="">
-                      <p>Linkedin: {{ profile_user.linkedin }}</p>
-                  </div>
-                  {% endif %}
-                  {% if profile_user.whatsapp %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/whatsapp.svg' %}" alt="">
-                      <p>WhatsApp: {{ profile_user.whatsapp }}</p>
-                  </div>
-                  {% endif %}
-                  {% if profile_user.ok %}
-                  <div class="contact_line">
-                      <img src="{% static 'img/ok.svg' %}" alt="">
-                      <p>Одноклассники: {{ profile_user.ok }}</p>
-                  </div>
-                  {% endif %}
-                </div>
-          </div>
-        </div>
-          <div class="online_status">
-              {% if profile_user.last_seen and profile_user.last_seen|timesince < '5 minutes' %}
-                  <img src="{% static 'img/Ellipse%2069.svg' %}" class="status-dot">
-                  <span class="online-text">В сети</span>
-              {% else %}
-                  <span class="offline-text">Не в сети</span>
-              {% endif %}
-          </div>
-          {% if user.id == profile_user.id %}
-            <a href="{% url 'pages:profile' pk=user.id %}?edit=true" class="setting">
-                <img src="{% static 'img/SettingsMajor%201.svg'%} " alt="Настройки">
-            </a>
-          {% endif %}
-        <div class="profile_photo">
-          <img src="{{ profile_user.image.url }}">
-        </div>
-      </div>
-      <div class="order">
-        {% if profile_user.is_staff == True and user.id == profile_user.id %}
-          <h2>Мои проекты</h2>
-        {% elif profile_user.is_staff == True %}
-          <h2>Проекты пользователя</h2>
-        {% elif profile_user.id == user.id %}
-          <h2>Мои заказы</h2>
-        {% elif profile_user.id != user.id %}
-          <h2>Заказы пользователя</h2>
-        {% endif %}
-        <div class="order_list">
-        {% if profile_user.id == user.id and profile_user.is_staff == False %}
-          <a href="#" id="create_order" class="order_cart">
-            <div id="create_order" class="order_cart">
-              <img  src="{% static 'img/CirclePlusMajor%201.svg' %}">
-              <h4>Создать заказ</h4>
-            </div>
-           </a>
-
-        {% endif %}
-        {% if profile_user.is_staff == True and profile_user.id == user.id %}
-            {% for project in projects %}
-                <div class="order_cart">
-                    {% with project.media_files.first as media %}
-                        {% if media %}
-                            <img src="{{ media.file.url }}" alt="{{ project.title }}">
-                        {% else %}
-                            <img src="/static/images/default_project.jpg" alt="No image">
-                        {% endif %}
-                    {% endwith %}
-                    <h4>{{ project.title }}</h4>
-                    <h5>{{ project.price }}</h5>
-                </div>
-            {% endfor %}
         {% else %}
-            {% for project in projects %}
-                <div class="order_cart">
-                    {% with project.media_files.first as media %}
-                        {% if media %}
-                            <img src="{{ media.file.url }}" alt="{{ project.title }}">
-                        {% else %}
-                            <img src="/static/images/default_project.jpg" alt="No image">
-                        {% endif %}
-                    {% endwith %}
-                    <h4>{{ project.title }}</h4>
-                    <h5>{{ project.price }}</h5>
-                </div>
-            {% endfor %}
+            <p>Пользователь пока ничего о себе не рассказал</p>
         {% endif %}
 
+        <div class="contact_info">
+            <div class="contact_title" onclick="toggleContactInfo()">
+                <h3>Контактная информация</h3>
+                <img id="chevronProfile" class="chevron-icon"
+                     src="{% static 'img/akar-icons_chevron-down.svg' %}"
+                     alt="Развернуть">
+            </div>
+            <div id="contactDetailsProfile" class="contact_details">
+                {% if profile_user.vk %}
+                <div class="contact_line">
+                    <img src="{% static 'img/vk.svg' %}" alt="">
+                    <p>Ваш ВК: {{ profile_user.vk }}</p>
+                </div>
+                {% endif %}
 
+                {% if profile_user.telegram %}
+                <div class="contact_line">
+                    <img src="{% static 'img/telegram.svg' %}" alt="">
+                    <p>Ваш телеграм: {{ profile_user.telegram }}</p>
+                </div>
+                {% endif %}
 
+                {% if profile_user.email %}
+                <div class="contact_line">
+                    <img src="{% static 'img/email.svg' %}" alt="">
+                    <p>Ваш email: {{ profile_user.email }}</p>
+                </div>
+                {% endif %}
+
+                {% if profile_user.telephone %}
+                <div class="contact_line">
+                    <img src="{% static 'img/telephone.svg' %}" alt="">
+                    <p>Ваш телефон: {{ profile_user.telephone }}</p>
+                </div>
+                {% endif %}
+
+                {% if profile_user.linkedin %}
+                <div class="contact_line">
+                    <img src="{% static 'img/linkedin.svg' %}" alt="">
+                    <p>Linkedin: {{ profile_user.linkedin }}</p>
+                </div>
+                {% endif %}
+
+                {% if profile_user.whatsapp %}
+                <div class="contact_line">
+                    <img src="{% static 'img/whatsapp.svg' %}" alt="">
+                    <p>WhatsApp: {{ profile_user.whatsapp }}</p>
+                </div>
+                {% endif %}
+
+                {% if profile_user.ok %}
+                <div class="contact_line">
+                    <img src="{% static 'img/ok.svg' %}" alt="">
+                    <p>Одноклассники: {{ profile_user.ok }}</p>
+                </div>
+                {% endif %}
+            </div>
         </div>
-      </div>
+    </div>
+
+    <div class="online_status">
+        {% if profile_user.last_seen and profile_user.last_seen|timesince < '5 minutes' %}
+            <img src="{% static 'img/Ellipse%2069.svg' %}" class="status-dot">
+            <span class="online-text">В сети</span>
+        {% else %}
+            <span class="offline-text">Не в сети</span>
+        {% endif %}
+    </div>
+
+    {% if user.id == profile_user.id %}
+        <a href="{% url 'pages:profile' pk=user.id %}?edit=true" class="setting">
+            <img src="{% static 'img/SettingsMajor%201.svg' %}" alt="Настройки">
+        </a>
+    {% endif %}
+
+    <div class="profile_photo">
+       {% if profile_user.image %}
+        <img src="{{ profile_user.image.url }}">
+        {% else %}
+        <img src="{% static 'img/default-avatar.png' %}">
+        {% endif %}
+    </div>
+</div>
+
+<div class="order">
+    {% if profile_user.is_staff and user.id == profile_user.id %}
+        <h2>Мои проекты</h2>
+    {% elif profile_user.is_staff %}
+        <h2>Проекты пользователя</h2>
+    {% elif profile_user.id == user.id %}
+        <h2>Мои заказы</h2>
+    {% else %}
+        <h2>Заказы пользователя</h2>
+    {% endif %}
+
+    <div class="order_list">
+        {% if profile_user.id == user.id and not profile_user.is_staff %}
+            <a href="#" id="create_order" class="order_cart">
+                <div id="create_order" class="order_cart">
+                    <img src="{% static 'img/CirclePlusMajor%201.svg' %}">
+                    <h4>Создать заказ</h4>
+                </div>
+            </a>
+        {% endif %}
+
+        {% for project in projects %}
+            <div class="order_cart">
+                {% with project.media_files.first as media %}
+                    {% if media %}
+                        <img src="{{ media.file.url }}" alt="{{ project.title }}">
+                    {% else %}
+                        <img src="/static/images/default_project.jpg" alt="No image">
+                    {% endif %}
+                {% endwith %}
+                <h4>{{ project.title }}</h4>
+                <h5>{{ project.price }}</h5>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
 
+<script>
+function toggleContactInfo() {
+    var contactDetails = document.getElementById('contactDetailsProfile');
+    var titleElement = document.querySelector('.contact_title');
+    var chevron = document.getElementById('chevronProfile');
 
-      </div>
-      <script>
-          // Простая функция для переключения видимости
-          function toggleContactsProfile() {
-              var contactDetails = document.getElementById('contactDetailsProfile');
-              var chevron = document.getElementById('chevronProfile');
-              
-              if (contactDetails) {
-                  if (contactDetails.style.display === 'block') {
-                      contactDetails.style.display = 'none';
-                      if (chevron) chevron.style.transform = 'rotate(0deg)';
-                  } else {
-                      contactDetails.style.display = 'block';
-                      if (chevron) chevron.style.transform = 'rotate(180deg)';
-                  }
-              }
-          }
-      </script>
+    if (!contactDetails) return;
+
+    contactDetails.classList.toggle('active');
+    if (titleElement) titleElement.classList.toggle('active');
+
+    if (chevron) {
+        chevron.style.transform =
+            contactDetails.classList.contains('active')
+            ? 'rotate(180deg)'
+            : 'rotate(0deg)';
+    }
+}
+</script>
