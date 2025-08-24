@@ -13,12 +13,12 @@
           {% else %}
             <p>Пользователь пока ничего о себе не рассказал</p>
           {% endif %}
-          <div class="contacts_info">
-              <div class="title_contact" onclick="toggleContacts()">
-                  <p>Контактная информация</p>
-                  <img id="chevron" src="{% static 'img/akar-icons_chevron-down.svg' %}">
+          <div class="contact_info">
+              <div class="contact_title" onclick="toggleContactsProfile()">
+                  <h3>Контактная информация</h3>
+                  <img id="chevronProfile" src="{% static 'img/chevron-down.svg' %}" alt="Развернуть">
               </div>
-                <div class="contact_details" id="contactDetails">
+                <div id="contactDetailsProfile" class="contact_details" style="display: none;">
                   {% if profile_user.vk %}
                   <div class="contact_line">
                       <img src="{% static 'img/vk.svg' %}" alt="">
@@ -76,9 +76,9 @@
               {% endif %}
           </div>
           {% if user.id == profile_user.id %}
-            <div class="setting">
-                <img src="{% static 'img/SettingsMajor%201.svg'%} ">
-            </div>
+            <a href="{% url 'pages:profile' pk=user.id %}?edit=true" class="setting">
+                <img src="{% static 'img/SettingsMajor%201.svg'%} " alt="Настройки">
+            </a>
           {% endif %}
         <div class="profile_photo">
           <img src="{{ profile_user.image.url }}">
@@ -142,18 +142,20 @@
 
 
       </div>
-      <script src="js/app.js"></script>
       <script>
-          function toggleContacts() {
-              const contactDetails = document.getElementById('contactDetails');
-              const chevron = document.getElementById('chevron');
-
-              if (contactDetails.classList.contains('show')) {
-                  contactDetails.classList.remove('show');
-                  chevron.style.transform = 'rotate(0deg)';
-              } else {
-                  contactDetails.classList.add('show');
-                  chevron.style.transform = 'rotate(180deg)';
+          // Простая функция для переключения видимости
+          function toggleContactsProfile() {
+              var contactDetails = document.getElementById('contactDetailsProfile');
+              var chevron = document.getElementById('chevronProfile');
+              
+              if (contactDetails) {
+                  if (contactDetails.style.display === 'block') {
+                      contactDetails.style.display = 'none';
+                      if (chevron) chevron.style.transform = 'rotate(0deg)';
+                  } else {
+                      contactDetails.style.display = 'block';
+                      if (chevron) chevron.style.transform = 'rotate(180deg)';
+                  }
               }
           }
       </script>

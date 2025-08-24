@@ -1,37 +1,46 @@
 {% load static %}
 
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}M&N Digital{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <meta name="description" content="">
-
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
+    <meta name="description" content="M&N Digital - креативный хаб дизайна и разработки">
+    
+    <!-- Мета-теги для соцсетей -->
+    <meta property="og:title" content="M&N Digital - Креативный Хаб">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
-    <meta property="og:image:alt" content="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700;800&display=swap" rel="stylesheet">
+    <meta property="og:description" content="Дизайн и разработка - здесь идеи оживают с помощью технологий!">
+    <meta property="og:image:alt" content="M&N Digital логотип">
+    
+    <!-- Шрифты и стили -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <meta name="theme-color" content="#fafafa">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Фавиконка и тема -->
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <meta name="theme-color" content="#1DBF73">
+    
     {% block extra_head %}{% endblock %}
 </head>
 
 <body>
   <div class="container">
     {% include 'includes/header.html' %}
-
-
-    {% block content %}{% endblock %}
-
-
+    
+    <main class="main-content">
+      {% block content %}{% endblock %}
+    </main>
+    
     {% include 'includes/footer.html' %}
   </div>
-    <script src="{% static 'js/app.js' %}"></script>
-    {% block extra_scripts %}{% endblock %}
+  
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
 </body>
 </html>

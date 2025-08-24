@@ -1,14 +1,20 @@
 {% load static %}
 
 <footer class="footer">
-    <i class="text_footer">
-        <h3>M&N Digital</h3>
-    </i>
-    <div class="contacts">
-        <a href=""><img src="{% static 'img/vk.svg' %}" alt=""></a>
-        <a href=""><img src="{% static 'img/telegram.svg' %}" alt=""></a>
-        <a href=""><img src="{% static 'img/icons8-github.svg' %}" alt=""></a>
-        <a href=""><img src="{% static 'img/email.png' %}" alt=""></a>
-        <a href=""><img src="{% static 'img/behance.svg' %}" alt=""></a>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3 class="footer-title">M&N Digital</h3>
+            <p class="footer-tagline">Создаем цифровые решения для вашего бизнеса</p>
+        </div>
+        <div class="contacts">
+            <a href="" class="social-link" aria-label="ВКонтакте"><img src="{% static 'img/vk.svg' %}" alt="ВКонтакте"></a>
+            <a href="" class="social-link" aria-label="Telegram"><img src="{% static 'img/telegram.svg' %}" alt="Telegram"></a>
+            <a href="" class="social-link" aria-label="GitHub"><img src="{% static 'img/icons8-github.svg' %}" alt="GitHub"></a>
+            <a href="" class="social-link" aria-label="Email"><img src="{% static 'img/email.png' %}" alt="Email"></a>
+            <a href="" class="social-link" aria-label="Behance"><img src="{% static 'img/behance.svg' %}" alt="Behance"></a>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; {% now "Y" %} M&N Digital. Все права защищены.</p>
     </div>
 </footer>

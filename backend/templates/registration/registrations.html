@@ -2,125 +2,116 @@
 {% load static %}
 
 {% block content %}
-<!doctype html>
-<html class="no-js" lang="">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M&N Digital - Регистрация</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
+<div class="auth_view">
+    <div class="authorization_form">
+        <p>Добро пожаловать!</p>
+        <h2>Создайте аккаунт</h2>
 
-    <div class="auth_view">
-        <div class="authorization_form">
-            <p>Добро пожаловать!</p>
-            <h2>Создайте аккаунт</h2>
+        <form method="post" enctype="multipart/form-data" class="registration-form">
+            {% csrf_token %}
 
-            <form method="post" enctype="multipart/form-data" class="registration-form">
-                {% csrf_token %}
+            <!-- Основные поля формы -->
+            <div class="input_auth_data">
+                <label for="{{ form.username.id_for_label }}">Логин</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error">Проверьте введенный логин</div>
+                {% endif %}
+            </div>
+            
+            <div class="input_auth_data">
+                <label for="{{ form.first_name.id_for_label }}">Имя</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <div class="error">Имя должно быть обязательно</div>
+                {% endif %}
+            </div>
+            
+            <div class="input_auth_data">
+                <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <div class="error">Фамилия должна быть обязательно</div>
+                {% endif %}
+            </div>
 
-                <!-- Основные поля формы -->
-                <div class="input_auth_data">
-                    <label for="{{ form.username.id_for_label }}">Логин</label>
-                    {{ form.username }}
-                    {% if form.username.errors %}
-                        <div class="error">Проверьте введенное логин</div>
-                    {% endif %}
-                </div>
-              <div class="input_auth_data">
-                    <label for="{{ form.first_name.id_for_label }}">Имя</label>
-                    {{ form.first_name }}
-                    {% if form.first_name.errors %}
-                        <div class="error">Имя должно быть обязательно</div>
-                    {% endif %}
-                </div>
-              <div class="input_auth_data">
-                    <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
-                    {{ form.last_name }}
-                    {% if form.last_name.errors %}
-                        <div class="error">Фамилия должна быть обязательно</div>
-                    {% endif %}
-                </div>
+            <div class="input_auth_data">
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error">Проверьте введенный e-mail</div>
+                {% endif %}
+            </div>
 
-                <div class="input_auth_data">
-                    <label for="{{ form.email.id_for_label }}">Email</label>
-                    {{ form.email }}
-                    {% if form.email.errors %}
-                        <div class="error">Проверьте введенный e-mail</div>
-                    {% endif %}
-                </div>
-
-                <div class="input_auth_data">
-                    <label for="{{ form.telephone.id_for_label }}">Телефон</label>
-                    {{ form.telephone }}
-                    {% if form.telephone.errors %}
-                        <div class="error">
-                            {% for error in form.telephone.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-              {% if form.non_field_errors %}
-                <div class="non-field-errors">
-                    {% for error in form.non_field_errors %}
-                        <div class="error">Проверьте введенный номер телефона</div>
-                    {% endfor %}
-                </div>
+            <div class="input_auth_data">
+                <label for="{{ form.telephone.id_for_label }}">Телефон</label>
+                {{ form.telephone }}
+                {% if form.telephone.errors %}
+                    <div class="error">
+                        {% for error in form.telephone.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            {% if form.non_field_errors %}
+            <div class="non-field-errors">
+                {% for error in form.non_field_errors %}
+                    <div class="error">Проверьте введенный номер телефона</div>
+                {% endfor %}
+            </div>
             {% endif %}
 
-                <div class="input_auth_data">
-                    <label for="{{ form.password1.id_for_label }}">Пароль</label>
-                    <input type="password"
-                           name="{{ form.password1.name }}"
-                           id="{{ form.password1.id_for_label }}"
-                           class="form-control"
-                           required>
-                    {% if form.password1.errors %}
-                        <div class="error">Проверьте введенный пароль</div>
-                    {% endif %}
-                </div>
-
-                <div class="input_auth_data">
-                    <label for="{{ form.password2.id_for_label }}">Подтвердите пароль</label>
-                    <input type="password"
-                           name="{{ form.password2.name }}"
-                           id="{{ form.password2.id_for_label }}"
-                           class="form-control"
-                           required>
-                    {% if form.password2.errors %}
-                        <div class="error">Пароли не совпадают</div>
-                    {% endif %}
-                </div>
-
-
-                <div class="input_auth_data">
-                    <label for="{{ form.image.id_for_label }}">Аватар (необязательно)</label>
-                    <div class="file-upload-wrapper">
-                      <span class="file-name">Файл не выбран</span>
-                      <label for="{{ form.image.id_for_label }}" class="file-upload-btn">Выбрать</label>
-                        {{ form.image }}
-                    </div>
-                </div>
-
-
-                <div class="enter_auth">
-                    <button type="submit">Зарегистрироваться</button>
-                </div>
-            </form>
-
-            <div class="registration">
-                <p>Уже есть аккаунт?</p>
-                <a href="{% url 'pages:login' %}">Войти</a>
+            <div class="input_auth_data">
+                <label for="{{ form.password1.id_for_label }}">Пароль</label>
+                <input type="password"
+                       name="{{ form.password1.name }}"
+                       id="{{ form.password1.id_for_label }}"
+                       class="form-control"
+                       required>
+                {% if form.password1.errors %}
+                    <div class="error">Проверьте введенный пароль</div>
+                {% endif %}
             </div>
-        </div>
-        <div class="authorization_photo">
-            <img src="{% static 'img/auth_photo.png' %}" alt="Регистрация в M&N Digital">
+
+            <div class="input_auth_data">
+                <label for="{{ form.password2.id_for_label }}">Подтвердите пароль</label>
+                <input type="password"
+                       name="{{ form.password2.name }}"
+                       id="{{ form.password2.id_for_label }}"
+                       class="form-control"
+                       required>
+                {% if form.password2.errors %}
+                    <div class="error">Пароли не совпадают</div>
+                {% endif %}
+            </div>
+
+            <div class="input_auth_data">
+                <label for="{{ form.image.id_for_label }}">Аватар (необязательно)</label>
+                <div class="file-upload-wrapper">
+                  <span class="file-name">Файл не выбран</span>
+                  <label for="{{ form.image.id_for_label }}" class="file-upload-btn">Выбрать</label>
+                    {{ form.image }}
+                </div>
+            </div>
+
+            <div class="enter_auth">
+                <button type="submit">Зарегистрироваться</button>
+            </div>
+        </form>
+
+        <div class="registration">
+            <p>Уже есть аккаунт?</p>
+            <a href="{% url 'pages:login' %}" class="login-link">
+                <i class="fas fa-sign-in-alt"></i> Войти
+            </a>
         </div>
     </div>
+    <div class="authorization_photo">
+        <img src="{% static 'img/auth_photo.png' %}" alt="Регистрация в M&N Digital">
+    </div>
+</div>
 
 <script>
 // Обработка отображения имени файла
@@ -130,10 +121,8 @@ document.getElementById('{{ form.image.id_for_label }}').addEventListener('chang
 });
 
 // Маска для телефона
-document.getElementById('id_telephone').addEventListener('input', function(e) {
+document.getElementById('id_telephone') && document.getElementById('id_telephone').addEventListener('input', function(e) {
     this.value = this.value.replace(/[^\d+]/g, '');
 });
 </script>
-</body>
-</html>
 {% endblock %}
