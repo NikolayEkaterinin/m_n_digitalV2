@@ -18,11 +18,12 @@
         {% endif %}
 
         <div class="contact_info">
-            <div class="contact_title" onclick="toggleContactInfo()">
-                <h3>Контактная информация</h3>
+            <div class="contact_title" onclick="toggleContactInfo()" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                <h3 style="margin: 0;">Контактная информация</h3>
                 <img id="chevronProfile" class="chevron-icon"
                      src="{% static 'img/akar-icons_chevron-down.svg' %}"
-                     alt="Развернуть">
+                     alt="Развернуть"
+                     style="width: 20px; height: 20px;">
             </div>
             <div id="contactDetailsProfile" class="contact_details">
                 {% if profile_user.vk %}
@@ -88,7 +89,6 @@
                 <span class="offline-text">Не в сети</span>
             {% endif %}
         </div>
-
     </div>
 
 </div>
