@@ -1,0 +1,49 @@
+version: "3.8"
+
+volumes:
+  postgres_data:
+  backend_volume:
+  media_volume:
+
+services:
+  db:
+    image: postgres:13.10
+    container_name: db_mndigital
+    environment:
+      - POSTGRES_DB=mn_digital
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ".env"
+    restart: always
+
+  backend:
+    build: ./backend/
+    container_name: backend
+    volumes:
+      - backend_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py makemigrations --no-input &&
+             python manage.py migrate --no-input &&
+             python manage.py collectstatic --no-input &&
+             gunicorn --bind 0.0.0.0:8000 config.wsgi:application"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf
+      - backend_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
+    depends_on:
+      - backend
+    restart: always

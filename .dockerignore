@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+*.sqlite3
+
+# Environment
+.env
+*.env
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Logs
+*.log
+
+# Byte-compiled / optimized / DLL files
+*.so
+
+# IDE
+.vscode/
+.idea/
+
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+
+# Cache
+__pycache__/
+*.egg-info/
+*.egg
+*.db
+
+# Static and media (если собираются через volume)
+staticfiles/
+media/
